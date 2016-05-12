@@ -5,10 +5,11 @@ using System.Web;
 
 namespace ChatUp.Models
 {
-    public class Message
+    public class PieceJointe
     {
-        public string Contenu { get; set; }
+        public string Nom { get; set; }
 
-        public Message(string Contenu) { }
+        public PieceJointe(string Name) { }
+
     }
 }

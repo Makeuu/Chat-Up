@@ -5,10 +5,10 @@ using System.Web;
 
 namespace ChatUp.Models
 {
-    public class Message
+    public abstract class  Contenu
     {
-        public string Contenu { get; set; }
+        public DateTime DateEnvoi { get; set; }
 
-        public Message(string Contenu) { }
+        public Contenu(Contenu Contenu) { }
     }
 }
