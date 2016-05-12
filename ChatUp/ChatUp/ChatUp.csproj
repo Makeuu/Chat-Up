@@ -200,10 +200,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Models\DalUtilisateur.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BddContext.cs" />
+    <Compile Include="Models\IDalUtilisateur.cs" />
+    <Compile Include="Models\ProfilModels.cs" />
+    <Compile Include="Models\UtilisateurModels.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
