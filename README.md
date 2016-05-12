@@ -1,6 +1,6 @@
 
 <snippet>
-  <content><
+  <content>
 #Projet Chat-Up 2016}
 TODO: Write a project description
 ## Installation
