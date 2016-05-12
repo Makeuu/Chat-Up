@@ -19,5 +19,4 @@ TODO: Write usage instructions
 
 ## License
 </content>
-  <tabTrigger>readme</tabTrigger>
 </snippet>
