@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class UtilisateurModels
 {
+    [Key]
     [Required]
     [DataType(DataType.EmailAddress)]
     [Display(Name = "Adresse Email")]

@@ -200,13 +200,20 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Models\DalUtilisateur.cs" />
+    <Compile Include="Dal\BddInitializer.cs" />
+    <Compile Include="Dal\DalProfil.cs" />
+    <Compile Include="Dal\IDalProfil.cs" />
+    <Compile Include="Models\Contenu.cs" />
+    <Compile Include="Dal\DalUtilisateur.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BddContext.cs" />
-    <Compile Include="Models\IDalUtilisateur.cs" />
+    <Compile Include="Dal\BddContext.cs" />
+    <Compile Include="Models\Groupe.cs" />
+    <Compile Include="Dal\IDalUtilisateur.cs" />
+    <Compile Include="Models\PieceJointe.cs" />
+    <Compile Include="Models\Profil.cs" />
     <Compile Include="Models\ProfilModels.cs" />
     <Compile Include="Models\UtilisateurModels.cs" />
     <Compile Include="Models\Message.cs" />
@@ -226,9 +233,6 @@
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

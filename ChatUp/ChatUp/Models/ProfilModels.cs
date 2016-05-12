@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 public class ProfilModels
 {
+    [Key]
+    public int ProfilId { get; set; }
     [Required]
     [DataType(DataType.Text)]
     [Display(Name = "Nom")]
@@ -15,7 +16,5 @@ public class ProfilModels
     [DataType(DataType.Date)]
     [Display(Name = "Date d'anniversaire")]
     public DateTime Anniversaire { get; set; }
-
-    public Image ImageProfil { get; set; }
 
 }
