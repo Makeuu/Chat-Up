@@ -9,7 +9,7 @@ namespace ChatUp.Models
         [Required]
         [StringLength(256, ErrorMessage = "Le nom du groupe doit compter entre 3 et 256 caractères.", MinimumLength = 3)]
         [DataType(DataType.Text)]
-        [Display(Name = "Nom du groupee")]
+        [Display(Name = "Nom du groupe")]
         public string NomGroupe { get; set; }
 
         [DataType(DataType.ImageUrl)]
