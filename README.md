@@ -1,8 +1,7 @@
 
 <snippet>
   <content><![CDATA[
-# ${1:# Chat-Up
-Projet Chat-Up 2016}
+# ${Projet Chat-Up 2016}
 TODO: Write a project description
 ## Installation
 TODO: Impport project in VisualStudio
