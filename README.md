@@ -4,7 +4,7 @@
 #Projet Chat-Up 2016
 TODO: Write a project description
 ## Installation
-TODO: Impport project in VisualStudio
+TODO: Import project in VisualStudio
 ## Usage
 TODO: Write usage instructions
 ## Contributing
