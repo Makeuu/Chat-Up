@@ -15,7 +15,7 @@ namespace ChatUp.Dal
 
         public void CreerUtilisateur(string email, string motdepasse)
         {
-            bdd.ListeUtilisateurs.Add(new UtilisateurModels { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Today });
+            bdd.ListeUtilisateurs.Add(new UtilisateurModels { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
             bdd.SaveChanges(); 
         }
 
