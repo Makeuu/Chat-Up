@@ -1,24 +1,119 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html {
+  height : 100%;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+  height : 100%;
+  overflow: hidden;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+main{
+  height : 92%;
+  padding-left: 100px;;
+}
+main > .container {
+  width: 100%;
+  max-width: none;
+}
+.nav-wrapper > a {
+  padding-left: 100px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+nav .nav-wrapper a.page-title {
+    font-size: 36px;
+}
+
+nav.top-nav a.page-title {
+padding-left: 50%;
+}
+
+a.button-collapse.top-nav {
+    position: absolute;
+    text-align: center;
+    height: 48px;
+    width: 48px;
+    left: 7.5%;
+    top: 0;
+    float: none;
+    margin-left: 1.5rem;
+    color: #fff;
+    font-size: 36px;
+    z-index: 2;
+}
+
+a.button-collapse.top-nav i {
+    font-size: 32px;
+}
+
+@media only screen and (max-width: 992px){
+  header, main, footer, .nav-wrapper > a {
+    padding-left: 0;
+  }
+}
+
+.side-nav li.active {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.container {
+  width:90%;
+  height : 100%;
+}
+.row {
+  height: 100%;
+  width: 100%;
+}
+.col{
+  height: 100%;
+}
+
+a.button-collapse{
+  color : black;
+}
+
+.row .col {
+  padding:0px;
+}
+
+.collection {
+  border:none;
+  border-right: 1px solid #e0e0e0;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+.bubble {
+  padding: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.you{
+  background-color: green;
+  margin-left: 40%;
+}
+
+.me{
+  margin-right: 40%;
+}
+
+.conversation-start{
+  color: gray;
+}
+
+.chat{
+  height: 80%;
+}
+.send_box{
+  height: 20%;
+  border-top: 1px solid #e0e0e0;
+}
+
+.piece_jointe{
+  position: fixed;
+  right: 0;
 }
