@@ -213,7 +213,6 @@
     <Compile Include="Models\Groupe.cs" />
     <Compile Include="Dal\IDalUtilisateur.cs" />
     <Compile Include="Models\PieceJointe.cs" />
-    <Compile Include="Models\Profil.cs" />
     <Compile Include="Models\ProfilModels.cs" />
     <Compile Include="Models\UtilisateurModels.cs" />
     <Compile Include="Models\Message.cs" />
