@@ -203,15 +203,16 @@
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Dal\BddInitializer.cs" />
     <Compile Include="Dal\DalProfil.cs" />
+    <Compile Include="Dal\IDalGroupe.cs" />
     <Compile Include="Dal\IDalProfil.cs" />
-    <Compile Include="Models\Contenu.cs" />
     <Compile Include="Dal\DalUtilisateur.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Dal\BddContext.cs" />
-    <Compile Include="Models\Groupe.cs" />
+    <Compile Include="Models\DiscussionsModels.cs" />
+    <Compile Include="Models\EvenementsModels.cs" />
     <Compile Include="Dal\IDalUtilisateur.cs" />
     <Compile Include="Models\PieceJointe.cs" />
     <Compile Include="Models\Profil.cs" />

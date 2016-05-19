@@ -1,8 +1,5 @@
 ﻿using ChatUp.Dal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using ChatUp.Models;
 using System.Web.Mvc;
 
 namespace ChatUp.Controllers
@@ -22,7 +19,7 @@ namespace ChatUp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Inscrire(UtilisateurModels utilisateur)
+        public ActionResult Inscrire(UtilisateurModel utilisateur)
         {
             if (ModelState.IsValid)
             {
@@ -30,7 +27,6 @@ namespace ChatUp.Controllers
                 Dal.CreerUtilisateur(utilisateur.Email, utilisateur.MotDePasse);
                 return RedirectToAction("Index", "Home");
             }
-
 
             // If we got this far, something failed, redisplay form
             return View();
