@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using ChatUp.Models;
 
 namespace ChatUp.Dal
 {
@@ -7,8 +8,8 @@ namespace ChatUp.Dal
     {
         protected override void Seed(BddContext context)
         {
-            ProfilModels profil = new ProfilModels { Nom = "Mercier", Prenom = "Matthieu", Anniversaire = new DateTime(1993, 5, 31) };
-            UtilisateurModels utilisateur = new UtilisateurModels { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Profil = profil };
+            ProfilModel profil = new ProfilModel { Nom = "Mercier", Prenom = "Matthieu", Anniversaire = new DateTime(1993, 5, 31) };
+            UtilisateurModel utilisateur = new UtilisateurModel { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Profil = profil };
 
             context.ListeProfils.Add(profil);
             context.ListeUtilisateurs.Add(utilisateur);

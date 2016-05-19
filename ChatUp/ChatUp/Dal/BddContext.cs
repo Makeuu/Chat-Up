@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using ChatUp.Models;
 
 namespace ChatUp.Dal
 {
@@ -6,10 +7,10 @@ namespace ChatUp.Dal
     {
         public BddContext() : base(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ChatUp.Models.BddContext;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {
-            System.Data.Entity.Database.SetInitializer<BddContext>(new BddInitializer());
+            Database.SetInitializer<BddContext>(new BddInitializer());
         }
-        public DbSet<UtilisateurModels> ListeUtilisateurs { get; set; }
-        public DbSet<ProfilModels> ListeProfils { get; set; }
 
+        public DbSet<UtilisateurModel> ListeUtilisateurs { get; set; }
+        public DbSet<ProfilModel> ListeProfils { get; set; }
     }
 }
