@@ -1,9 +1,10 @@
 ﻿using ChatUp.Dal;
+using ChatUp.Models;
 using Microsoft.Owin;
 using Owin;
 using System.Collections.Generic;
 
-[assembly: OwinStartupAttribute(typeof(ChatUp.Startup))]
+[assembly: OwinStartup(typeof(ChatUp.Startup))]
 namespace ChatUp
 {
     public partial class Startup
@@ -11,7 +12,7 @@ namespace ChatUp
         public void Configuration(IAppBuilder app)
         {
             DalUtilisateur dal = new DalUtilisateur();
-            List<UtilisateurModels> liste = dal.ObtientTousLesUtilisateurs();
+            List<UtilisateurModel> liste = dal.ObtientTousLesUtilisateurs();
             ConfigureAuth(app);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ChatUp.Models;
 
 namespace ChatUp.Dal
 {
@@ -15,7 +16,7 @@ namespace ChatUp.Dal
 
         public void CreerUtilisateur(string email, string motdepasse)
         {
-            bdd.ListeUtilisateurs.Add(new UtilisateurModels { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
+            bdd.ListeUtilisateurs.Add(new UtilisateurModel { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
             bdd.SaveChanges(); 
         }
 
@@ -23,8 +24,8 @@ namespace ChatUp.Dal
         {
             bdd.Dispose();
         }
-  
-        public List<UtilisateurModels> ObtientTousLesUtilisateurs()
+        
+        public List<UtilisateurModel> ObtientTousLesUtilisateurs()
         {
             return bdd.ListeUtilisateurs.ToList();
         }
