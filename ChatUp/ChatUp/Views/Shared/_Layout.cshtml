@@ -14,7 +14,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
 </head>
-
+@Html.Action("Index")
 <body>
     <header>
         <nav class="top-nav">
@@ -24,7 +24,7 @@
         </nav>
         <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
         <ul id="nav-mobile" class="side-nav fixed">
-            <li class="active"><a href="#!"><i class="material-icons">perm_identity</i></a></li>
+            <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
         </ul>
     </header>
     <main>

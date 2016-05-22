@@ -6,6 +6,7 @@ namespace ChatUp.Models
 {
     public class UtilisateurModel
     {
+        public int Id { get; set; }
         [Key]
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -43,7 +44,12 @@ namespace ChatUp.Models
 
     public class SessionModel
     {
-
+        [Key]
+        [Required]
+        public String Email { get; set; }
+        public String MotDePasse { get; set; }
+        public UtilisateurModel Utilisateur { get; set; }
+        public bool Authentifie { get; set; }
     }
 
     public class EtatModel

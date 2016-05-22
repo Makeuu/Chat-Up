@@ -203,9 +203,11 @@
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Dal\BddInitializer.cs" />
     <Compile Include="Dal\DalProfil.cs" />
+    <Compile Include="Dal\DalSession.cs" />
     <Compile Include="Dal\IDalGroupe.cs" />
     <Compile Include="Dal\IDalProfil.cs" />
     <Compile Include="Dal\DalUtilisateur.cs" />
+    <Compile Include="Dal\IDalSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -353,7 +355,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3466</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -8,6 +8,6 @@ namespace ChatUp.Dal
     {
         List<UtilisateurModel> ObtientTousLesUtilisateurs();
         void CreerUtilisateur(string email, string motdepasse);
-
+        UtilisateurModel ObtenirUtilisateur(string email);
     }
 }

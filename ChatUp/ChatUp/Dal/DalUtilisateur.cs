@@ -19,7 +19,10 @@ namespace ChatUp.Dal
             bdd.ListeUtilisateurs.Add(new UtilisateurModel { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
             bdd.SaveChanges(); 
         }
-
+        public UtilisateurModel ObtenirUtilisateur(string email)
+        {
+            return bdd.ListeUtilisateurs.FirstOrDefault(u => u.Email == email);
+        }
         public void Dispose()
         {
             bdd.Dispose();
