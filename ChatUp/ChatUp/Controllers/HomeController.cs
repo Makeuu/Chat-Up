@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using ChatUp.Dal;
+using ChatUp.Models;
+using System;
+using System.Web.Mvc;
 
 namespace ChatUp.Controllers
 {
@@ -6,21 +9,16 @@ namespace ChatUp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            SessionModel viewModel = new SessionModel { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                DalUtilisateur Dal = new DalUtilisateur();
+                viewModel.Utilisateur = Dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
+                ViewData["Pseudo"] = viewModel.Utilisateur.Email;
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            }
+            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
+            return View(viewModel);
         }
     }
 }
