@@ -9,7 +9,7 @@ namespace ChatUp.Dal
         protected override void Seed(BddContext context)
         {
             ProfilModel profil = new ProfilModel { Nom = "Mercier", Prenom = "Matthieu", Anniversaire = new DateTime(1993, 5, 31) };
-            UtilisateurModel utilisateur = new UtilisateurModel { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Profil = profil };
+            UtilisateurModel utilisateur = new UtilisateurModel { Email = "matthieu@gmail.com", DateInscription = DateTime.Now, MotDePasse = "matt", Profil = profil };
 
             context.ListeProfils.Add(profil);
             context.ListeUtilisateurs.Add(utilisateur);
