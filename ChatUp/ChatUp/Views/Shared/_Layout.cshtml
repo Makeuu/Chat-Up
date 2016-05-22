@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ChatUp.Models.SessionModel
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -14,17 +15,25 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
 </head>
-@Html.Action("Index")
 <body>
     <header>
         <nav class="top-nav">
             <div class="container">
-                <div class="nav-wrapper"><a class="page-title">Chat - Up</a></div>
+                <div class="nav-wrapper">
+                    <a class="page-title">Chat - Up</a>
+                    @if ((bool)@ViewData["Authentifie"])
+                    {
+                        <ul class="right hide-on-med-and-down">
+                            <li>@ViewData["Pseudo"]</li>
+                            <li>@Html.ActionLink("Deconnexion", "Deconnexion","Utilisateur")</li>
+                        </ul>
+                    }
+                </div>
             </div>
         </nav>
         <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div>
         <ul id="nav-mobile" class="side-nav fixed">
-            <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+            @RenderSection("Menu")
         </ul>
     </header>
     <main>

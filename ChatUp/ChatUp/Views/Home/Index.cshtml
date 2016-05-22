@@ -1,12 +1,35 @@
-﻿@{
+﻿@model ChatUp.Models.SessionModel
+@{
     ViewBag.Title = "Accueil";
 }
+@section Menu
+{
+    @if ((bool)@ViewData["Authentifie"])
+    {
+        <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+        <li><a href="@Url.Action("Profil","Utilisateur")"><i class="material-icons">contacts</i></a></li>
+        <li><a href="@Url.Action("Groupes","Utilisateur")"><i class="material-icons">question_answer</i></a></li>
+        <li><a href="#!"><i class="material-icons">settings</i></a></li>
+        <li><a href=@Url.Action("Deconnexion","Utilisateur")><i class="material-icons">power_settings_new</i></a></li>
+    }
+    else
+    {
+        <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+    }
+}
 
-<h1 class="header center red-text">Accueil</h1>
-<div class="center">
-    <h5 class="header col s12 light">Page d'accueil de l'application de messagerie instantannées CHAT - UP</h5>
-</div>
-<div class="center">
-    @Html.ActionLink("S'inscrire", "Inscrire", "Utilisateur", new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
-    @Html.ActionLink("Se connecter", "Login", "Utilisateur" , new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
-</div>
+@if ((bool)@ViewData["Authentifie"])
+{
+    <p> Contenu quand l'utilisateur est connecté</p>
+}
+else
+{
+    <h1 class="header center red-text">Accueil</h1>
+    <div class="center">
+        <h5 class="header col s12 light">Page d'accueil de l'application de messagerie instantannées CHAT - UP</h5>
+    </div>
+    <div class="center">
+        @Html.ActionLink("S'inscrire", "Inscrire", "Utilisateur", new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
+        @Html.ActionLink("Se connecter", "Login", "Utilisateur", new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
+    </div>
+}

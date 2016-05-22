@@ -1,7 +1,13 @@
 ﻿@model ChatUp.Models.UtilisateurModel
 
+
 @{
     ViewBag.Title = "Inscrire";
+}
+
+@section Menu
+{
+    <li><a href="/"><i class="material-icons">perm_identity</i></a></li>
 }
 
 <h4>Fomulaire d'inscription</h4>
@@ -25,6 +31,11 @@
                     @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            @if (!(bool)@ViewData["succes"])
+            {
+                <p>Il y a eu un problème lors de l'inscription.</p>
+            }
 
             <button class="btn waves-effect waves-light" type="submit" name="action">
                 Inscription
