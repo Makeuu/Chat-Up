@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChatUp.Models
 {
@@ -19,12 +20,16 @@ namespace ChatUp.Models
         public string MotDePasse { get; set; }
         public DateTime DateInscription { get; set; }
         public ProfilModel Profil { get; set; }
+        
+        public virtual List<GroupeModel> Groupes { get; set; }
     }
 
     public class ProfilModel
     {
         [Key]
-        public int ProfilId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdProfil { get; set; }
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Nom")]

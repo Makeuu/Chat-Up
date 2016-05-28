@@ -202,10 +202,16 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Dal\BddInitializer.cs" />
+    <Compile Include="Dal\DalContenu.cs" />
+    <Compile Include="Dal\DalGroupe.cs" />
     <Compile Include="Dal\DalProfil.cs" />
+    <Compile Include="Dal\IDalContenu.cs" />
     <Compile Include="Dal\IDalGroupe.cs" />
+    <Compile Include="Dal\IDalMessage.cs" />
+    <Compile Include="Dal\IDalPieceJointe.cs" />
     <Compile Include="Dal\IDalProfil.cs" />
     <Compile Include="Dal\DalUtilisateur.cs" />
+    <Compile Include="Dal\Outils.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
