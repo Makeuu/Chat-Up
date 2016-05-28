@@ -14,17 +14,26 @@ namespace ChatUp.Dal
             bdd = new BddContext();
         }
 
-        public void CreerUtilisateur(string email, string motdepasse)
+        public bool CreerUtilisateur(string email, string motdepasse)
         {
-            bdd.ListeUtilisateurs.Add(new UtilisateurModel { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now, Groupes = new List<GroupeModel>() });
-            bdd.SaveChanges(); 
+            bool flag = false;
+            if (ObtenirUtilisateur(email) == null)
+            {
+                bdd.ListeUtilisateurs.Add(new UtilisateurModel { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
+                bdd.SaveChanges();
+                flag = true;
+            }
+            return flag;
         }
-
+        public UtilisateurModel ObtenirUtilisateur(string email)
+        {
+            return bdd.ListeUtilisateurs.FirstOrDefault(u => u.Email == email);
+        }
         public void Dispose()
         {
             bdd.Dispose();
         }
-        
+
         public List<UtilisateurModel> ObtientTousLesUtilisateurs()
         {
             return bdd.ListeUtilisateurs.ToList();

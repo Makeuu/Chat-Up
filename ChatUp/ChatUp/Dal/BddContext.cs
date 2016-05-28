@@ -45,6 +45,7 @@ namespace ChatUp.Dal
 
         public DbSet<UtilisateurModel> ListeUtilisateurs { get; set; }
         public DbSet<ProfilModel> ListeProfils { get; set; }
+        public DbSet<SessionModel>ListeSessions { get; set; }
         public DbSet<GroupeModel> ListeGroupes { get; set; }
     }
 }
