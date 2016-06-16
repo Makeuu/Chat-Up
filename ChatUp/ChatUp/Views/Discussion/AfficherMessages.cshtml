@@ -19,14 +19,14 @@
             </td>
             @if (msg.AuteurContenu.Email == HttpContext.Current.User.Identity.Name)
             {
-                <td class="me">
+                <td class="you">
                     @msg.AuteurContenuId
                     @Html.DisplayFor(modelItem => msg.Message)
                 </td>
             }
             else
             {
-                <td class="you">
+                <td class="me">
                     @msg.AuteurContenuId
                     @Html.DisplayFor(modelItem => msg.Message)
                 </td>

@@ -1,5 +1,6 @@
 ﻿using ChatUp.Dal;
 using ChatUp.Models;
+using System;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -7,6 +8,8 @@ namespace ChatUp.Controllers
 {
     public class UtilisateurController : Controller
     {
+        private BddContext db = new BddContext();
+
         // GET : Formulaire d'inscription
         public ActionResult Inscrire()
         {
@@ -18,27 +21,44 @@ namespace ChatUp.Controllers
         [HttpPost]
         public ActionResult Inscrire(UtilisateurModel utilisateur)
         {
-            bool flag = false;
-            /*On test si le formulaire est bien rempli*/
+            //bool flag = false;
+            ///*On test si le formulaire est bien rempli*/
+            //if (ModelState.IsValid)
+            //{
+            //    DalUtilisateur Dal = new DalUtilisateur();
+            //    flag = Dal.CreerUtilisateur(utilisateur.Email, utilisateur.MotDePasse);
+            //    /*Ajouter une vue d'inscription réussis*/
+            //    /*On test si l'inscription de notre point de vue s'est bien déroulée*/
+            //    if (flag)
+            //    {
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //    /*Sinon on renvoit la page avec un message d'erreur*/
+            //    else
+            //    {
+            //        ViewData["Succes"] = flag;
+            //        return View();
+            //    }
+            //}
+            //// Sinon on renvoit la page
+            //ViewData["Succes"] = flag;
+            //return View();
+
             if (ModelState.IsValid)
             {
-                DalUtilisateur Dal = new DalUtilisateur();
-                flag = Dal.CreerUtilisateur(utilisateur.Email, utilisateur.MotDePasse);
-                /*Ajouter une vue d'inscription réussis*/
-                /*On test si l'inscription de notre point de vue s'est bien déroulée*/
-                if (flag)
+                ProfilModel profil = new ProfilModel
                 {
-                    return RedirectToAction("Index", "Home");
-                }
-                /*Sinon on renvoit la page avec un message d'erreur*/
-                else
-                {
-                    ViewData["Succes"] = flag;
-                    return View();
-                }
+                    Anniversaire = DateTime.Now
+                };
+
+                utilisateur.DateInscription = DateTime.Now;
+                utilisateur.Profil = profil;
+
+                db.ListeProfils.Add(profil);
+                db.ListeUtilisateurs.Add(utilisateur);
+                db.SaveChanges();
             }
-            // Sinon on renvoit la page
-            ViewData["Succes"] = flag;
+
             return View();
         }
 
@@ -87,11 +107,6 @@ namespace ChatUp.Controllers
 
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult Groupes()
-        {
-            return View();
         }
     }
 }

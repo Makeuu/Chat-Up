@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <p>@ViewData["Pseudo"]</p>
+            <p>@HttpContext.Current.User.Identity.Name</p>
 
             @if (!(bool)@ViewData["succes"])
             {

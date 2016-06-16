@@ -18,7 +18,7 @@ namespace ChatUp.Dal
             context.ListeProfils.Add(profil2);
             context.SaveChanges();
 
-            profil.IdProfil = context.ListeProfils.FirstOrDefault(pr => pr.Nom == profil.Nom && pr.Prenom == profil.Prenom && pr.Anniversaire == profil.Anniversaire).IdProfil;
+            profil.ProfilId = context.ListeProfils.FirstOrDefault(pr => pr.Nom == profil.Nom && pr.Prenom == profil.Prenom && pr.Anniversaire == profil.Anniversaire).ProfilId;
             
             UtilisateurModel utilisateur = new UtilisateurModel { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Groupes = new List<GroupeModel>(), Profil = profil };
             UtilisateurModel utilisateur2 = new UtilisateurModel { Email = "yassine.fernane@gmail.com", DateInscription = DateTime.Now, MotDePasse = "blabla", Groupes = new List<GroupeModel>(), Profil = profil2 };
