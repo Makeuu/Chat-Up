@@ -25,7 +25,7 @@ namespace ChatUp.Dal
             bdd.Dispose();
         }
 
-        public List<ProfilModel> ObtientTousLesUtilisateurs()
+        public List<ProfilModel> ObtientTousLesProfils()
         {
             return bdd.ListeProfils.ToList();
         }
