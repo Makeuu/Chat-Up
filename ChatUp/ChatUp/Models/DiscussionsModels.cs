@@ -20,17 +20,14 @@ namespace ChatUp.Models
         [DataType(DataType.Text)]
         [Display(Name = "Image du groupe")]
         public byte[] ImageGroupe { get; set; }
-
-        [Required]
+        
         [Display(Name = "Tout le monde peut envoyer des invitations ?")]
         public bool InvitationAutorisee { get; set; }
-
-        [Required]
+        
         [DataType(DataType.DateTime)]
         [Display(Name = "Date de création du groupe")]
         public DateTime DateCreationGroupe { get; set; }
         
-        [Required]
         [ForeignKey("AdministrateurGroupe")]
         public string AdministrateurGroupeId { get; set; }
         
@@ -41,7 +38,7 @@ namespace ChatUp.Models
         public virtual List<UtilisateurModel> MembresGroupe { get; set; }
         
         [Display(Name = "Historique des messages")]
-        public virtual List<ContenuModel> ListeMessages { get; set; }
+        public virtual List<MessageModel> ListeMessages { get; set; }
     }
     #endregion
 
@@ -58,10 +55,12 @@ namespace ChatUp.Models
         [ForeignKey("AuteurContenu")]
         public string AuteurContenuId;
 
-        [Required]
+        [ForeignKey("Groupe")]
+        public int GroupeId;
+        
         public virtual UtilisateurModel AuteurContenu { get; set; }
+        public virtual GroupeModel Groupe { get; set; }
     }
-
     #endregion
 
     #region Modèle d'une classe message

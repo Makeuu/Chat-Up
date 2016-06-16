@@ -16,11 +16,19 @@ namespace ChatUp.Dal
         private BddContext bdd;
 
         /// <summary>
-        /// Constructeur de la classe DalGroupe
+        /// Constructeur de la classe DalGroupe à partir d'un contexte existant
         /// </summary>
         public DalGroupe(BddContext ctx)
         {
             bdd = ctx;
+        }
+
+        /// <summary>
+        /// Constructeur de la classe DalGroupe
+        /// </summary>
+        public DalGroupe()
+        {
+            bdd = new BddContext();
         }
 
         /// <summary>
@@ -30,15 +38,15 @@ namespace ChatUp.Dal
         /// <param name="admin">L'utilisateur administrateur du groupe</param>
         /// <param name="membres">Une liste des membres du groupe</param>
         /// <returns>Retourne le groupe créé</returns>
-        public GroupeModel creerGroupe(string nom, UtilisateurModel admin, List<UtilisateurModel> membres)
+        public GroupeModel CreerGroupe(string nom, UtilisateurModel admin, List<UtilisateurModel> membres)
         {
             //On crée un groupe avec les paramètres passés
             GroupeModel groupe = new GroupeModel
             {
                 NomGroupe = nom,
                 AdministrateurGroupeId = admin.Email,
-                MembresGroupe = new List<UtilisateurModel>(),
-                ListeMessages = new List<ContenuModel>(),
+                MembresGroupe = membres,
+                ListeMessages = new List<MessageModel>(),
                 DateCreationGroupe = DateTime.Now,
                 InvitationAutorisee = false,
                 ImageGroupe = null
@@ -56,14 +64,39 @@ namespace ChatUp.Dal
 
             return groupe;
         }
+        
+        /// <summary>
+        /// Méthode permettant de modifier un groupe
+        /// </summary>
+        /// <param name="idGroupe">ID du groupe à modifier</param>
+        /// <param name="groupe">Groupe modifié</param>
+        public void EditerGroupe(int idGroupe, GroupeModel groupe)
+        {
+            try
+            {
+                //On tente de récuperer en base le groupe dont l'id a été passé en paramètre.
+                GroupeModel grp = bdd.ListeGroupes.FirstOrDefault(g => g.IdGroupe == idGroupe);
 
+                //Si le groupe a bien été récupéré, on le modifie et on sauvegarde en base
+                if (grp != null && groupe != null)
+                {
+                    grp = groupe;
+                    bdd.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }        
+        
         /// <summary>
         /// Méthode permettant de changer l'administrateur d'un groupe
         /// </summary>
         /// <param name="admin">Le nouvel admin du groupe</param>
         /// <param name="idGroupe">L'id du groupe à modifier</param>
         /// <returns> Renvoi 'true' si le changement a bien été effectué, false sinon. </returns>
-        public bool changeAdmin(UtilisateurModel nouvelAdmin, int  idGroupe)
+        public bool ChangeAdmin(UtilisateurModel nouvelAdmin, int  idGroupe)
         {
             try
             {
@@ -97,7 +130,7 @@ namespace ChatUp.Dal
         /// <param name="membre">Le membre à ajouter au groupe</param>
         /// <param name="idGroupe">L'id du groupe auquel on veut ajouter un membre</param>
         /// <returns>Retourne un booléen, 'true' si le membre a bien été ajouté, 'false' sinon </returns>
-        public bool ajouterMembre(UtilisateurModel membre, int idGroupe)
+        public bool AjouterMembre(UtilisateurModel membre, int idGroupe)
         {
             try
             {
@@ -139,7 +172,7 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="membres">La liste des membres à ajouter</param>
         /// <param name="idGroupe">L'id du groupe auquel on ajoute les membres </param>
-        public void ajouterMembres(List<UtilisateurModel> membres, int idGroupe)
+        public void AjouterMembres(List<UtilisateurModel> membres, int idGroupe)
         {
             try
             {
@@ -172,7 +205,7 @@ namespace ChatUp.Dal
         /// <param name="membre">Le membre à supprimer</param>
         /// <param name="idGroupe">L'id du groupe duquel on veut retirer l'utilisateur</param>
         /// <returns>Renvoi un booléen, 'true' si l'utilisateur a bien été supprimé, 'false' sinon </returns>
-        public bool supprimerMembre(UtilisateurModel membre, int idGroupe)
+        public bool SupprimerMembre(UtilisateurModel membre, int idGroupe)
         {
             try
             {
@@ -209,7 +242,7 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="idGroupe">L'id du groupe dont on veut récupérer la liste de membres</param>
         /// <returns>Retourne la liste des membres du groupe</returns>
-        public List<UtilisateurModel> voirMembres(int idGroupe)
+        public List<UtilisateurModel> VoirMembres(int idGroupe)
         {
             List<UtilisateurModel> liste = new List<UtilisateurModel>();
 
@@ -237,7 +270,7 @@ namespace ChatUp.Dal
         /// <param name="message">Objet message qu'on ajoute au groupe</param>
         /// <param name="idGroupe">Id du groupe auquel on ajoute un message</param>
         /// <returns>Retourne 'true' si le message a bien été ajouté, 'false' sinon. </returns>
-        public bool ajouterMessage(UtilisateurModel utilisateur, string message, int idGroupe)
+        public bool AjouterMessage(UtilisateurModel utilisateur, string message, int idGroupe)
         {
             try
             {
@@ -292,7 +325,7 @@ namespace ChatUp.Dal
         /// <param name="message">Le message à supprimer</param>
         /// <param name="idGroupe">L'id du groupe duquel on veut supprimer le message</param>
         /// <returns></returns>
-        public bool supprimerMessage(ContenuModel message, int idGroupe)
+        public bool SupprimerMessage(MessageModel message, int idGroupe)
         {
             try
             {
@@ -324,7 +357,7 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="idGroupe">Le groupe dont on veut récuperer les pièces jointes</param>
         /// <returns>Retourne la liste des pièces jointes</returns>
-        public List<PieceJointeModel> voirPiecesJointes(int idGroupe)
+        public List<PieceJointeModel> VoirPiecesJointes(int idGroupe)
         {
             List<PieceJointeModel> pjs = new List<PieceJointeModel>();
 
@@ -356,9 +389,9 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="idGroupe">L'id du groupe dont on veut récupérer l'historique</param>
         /// <returns>Retourne la liste des messages du groupe</returns>
-        public List<ContenuModel> voirHistorique(int idGroupe)
+        public List<MessageModel> VoirHistorique(int idGroupe)
         {
-            List<ContenuModel> histo = new List<ContenuModel>();
+            List<MessageModel> histo = new List<MessageModel>();
 
             try
             {
@@ -384,7 +417,7 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="autorisation">Booléen : true si tout le monde peut inviter des membres, false sinon</param>
         /// <param name="idGroupe">L'id du groupe</param>
-        public void autoriserInvitation(bool autorisation, int idGroupe)
+        public void AutoriserInvitation(bool autorisation, int idGroupe)
         {
             try
             {

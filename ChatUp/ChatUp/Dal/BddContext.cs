@@ -11,21 +11,6 @@ namespace ChatUp.Dal
             Database.SetInitializer(new BddInitializer());
         }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-
-        //    modelBuilder.Entity<UtilisateurModel>()
-        //                .HasMany(u => u.Groupes)
-        //                .WithMany(g => g.MembresGroupe)
-        //                .Map(cs =>
-        //                {
-        //                    cs.MapLeftKey("Email");
-        //                    cs.MapRightKey("IdGroupe");
-        //                    cs.ToTable("GroupeUtilisateur");
-        //                });
-
-        //}
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -37,8 +22,8 @@ namespace ChatUp.Dal
                         .WithMany(usr => usr.Groupes)
                         .Map(cs =>
                         {
-                            cs.MapLeftKey("Email");
-                            cs.MapRightKey("IdGroupe");
+                            cs.MapLeftKey("IdGroupe"); 
+                            cs.MapRightKey("Email");
                             cs.ToTable("GroupeUtilisateur");
                         });
         }
@@ -47,5 +32,7 @@ namespace ChatUp.Dal
         public DbSet<ProfilModel> ListeProfils { get; set; }
         public DbSet<SessionModel>ListeSessions { get; set; }
         public DbSet<GroupeModel> ListeGroupes { get; set; }
+        public DbSet<MessageModel> ListeMessages { get; set; }
+        public DbSet<PieceJointeModel> ListePiecesJointes { get; set; }
     }
 }

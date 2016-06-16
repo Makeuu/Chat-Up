@@ -1,0 +1,73 @@
+﻿@model ChatUp.Models.GroupeModel
+
+@{
+    ViewBag.Title = "Creer un groupe";
+}
+
+@section Menu
+{
+    @if ((bool)@ViewData["Authentifie"])
+    {
+        <li><a href="/"><i class="material-icons">perm_identity</i></a></li>
+        <li><a href="@Url.Action("Profil","Utilisateur")"><i class="material-icons">contacts</i></a></li>
+        <li class="active"><a href="@Url.Action("Index","Groupe")"><i class="material-icons">question_answer</i></a></li>
+        <li><a href="#!"><i class="material-icons">settings</i></a></li>
+        <li><a href=@Url.Action("Deconnexion","Utilisateur")><i class="material-icons">power_settings_new</i></a></li>
+    }
+    else
+    {
+        <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+    }
+}
+
+<h2>Créer un groupe</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NomGroupe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NomGroupe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NomGroupe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageGroupe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImageGroupe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ImageGroupe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InvitationAutorisee)
+            @Html.CheckBoxFor(model => model.InvitationAutorisee)
+        </div>
+        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.InvitationAutorisee, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.InvitationAutorisee)
+                    @Html.ValidationMessageFor(model => model.InvitationAutorisee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Créer groupe" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retourner à la liste des groupes", "Index")
+</div>

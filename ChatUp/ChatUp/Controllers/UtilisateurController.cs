@@ -10,9 +10,9 @@ namespace ChatUp.Controllers
         // GET : Formulaire d'inscription
         public ActionResult Inscrire()
         {
-            /*L'argument authentifie est présent dans chaque page pour un contenu intéractif.
-             A voir si on peut le mettre directement dans les pages plutôt que dans chaque vue...
-             Au début je testais la session mais ici la vue travaille avec le model Utilisateur. Du coup la page plante lors du test.
+            /* L'argument authentifie est présent dans chaque page pour un contenu intéractif.
+             * A voir si on peut le mettre directement dans les pages plutôt que dans chaque vue...
+             * Au début je testais la session mais ici la vue travaille avec le model Utilisateur. Du coup la page plante lors du test.
              */
             ViewData["Succes"] = true;
             ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
@@ -81,6 +81,7 @@ namespace ChatUp.Controllers
             ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             return View(viewModel);
         }
+
         public ActionResult Deconnexion()
         {
             DalSession DalS = new DalSession();
@@ -97,11 +98,11 @@ namespace ChatUp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Groupes()
-        {
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
-            return View();
-        }
+        //public ActionResult Groupes()
+        //{
+        //    ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
+        //    return View();
+        //}
 
         public ActionResult Profil()
         {

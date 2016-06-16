@@ -1,0 +1,73 @@
+﻿@model ChatUp.Models.GroupeModel
+
+@{
+    ViewBag.Title = "Details du groupe";
+}
+
+@section Menu
+{
+    if (Request.IsAuthenticated))
+    {
+        <li><a href="/"><i class="material-icons">perm_identity</i></a></li>
+        <li><a href="@Url.Action("Profil","Utilisateur")"><i class="material-icons">contacts</i></a></li>
+        <li class="active"><a href="@Url.Action("Index","Discussion")"><i class="material-icons">question_answer</i></a></li>
+        <li><a href="#!"><i class="material-icons">settings</i></a></li>
+        <li><a href=@Url.Action("Deconnexion","Utilisateur")><i class="material-icons">power_settings_new</i></a></li>
+    }
+    else
+    {
+        <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+    }
+}
+
+<div>
+    @Html.Action("Lister")
+</div>
+
+<h2>Details</h2>
+
+<div>
+    <h4>GroupeModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrateurGroupe.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrateurGroupe.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomGroupe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomGroupe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageGroupe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageGroupe)
+            
+            
+            @*@{ 
+                System.Drawing.Image img =  ChatUp.Dal.Outils.ByteArrayToImage(Model.ImageGroupe);
+            }*@
+        </dd>
+
+    </dl>
+</div>
+
+<br />
+
+<div>
+    @Html.Action("AfficherMessages", new ChatUp.ViewModels.DiscussionViewModel { Groupe = Model, Message = new ChatUp.Models.MessageModel() })
+</div>
+
+<div>
+    @Html.Action("EnvoyerMessage", new { idGroupe = Model.IdGroupe })
+</div>

@@ -3,6 +3,7 @@ using System.Data.Entity;
 using ChatUp.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace ChatUp.Dal
 {
@@ -21,20 +22,26 @@ namespace ChatUp.Dal
             
             UtilisateurModel utilisateur = new UtilisateurModel { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Groupes = new List<GroupeModel>(), Profil = profil };
             UtilisateurModel utilisateur2 = new UtilisateurModel { Email = "yassine.fernane@gmail.com", DateInscription = DateTime.Now, MotDePasse = "blabla", Groupes = new List<GroupeModel>(), Profil = profil2 };
+            UtilisateurModel utilisateur3 = new UtilisateurModel { Email = "yaya@moi.fr", DateInscription = DateTime.Now, MotDePasse = "yaya", Groupes = new List<GroupeModel>(), Profil = profil };
 
             context.ListeUtilisateurs.Add(utilisateur);
             context.ListeUtilisateurs.Add(utilisateur2);
+            context.ListeUtilisateurs.Add(utilisateur3);
             context.SaveChanges();
 
             //Test YF
             DalGroupe groupe = new DalGroupe(context);
-            GroupeModel gm = groupe.creerGroupe("Groupe Test", utilisateur, new List<UtilisateurModel>());
+            GroupeModel gm = groupe.CreerGroupe("Groupe Test", utilisateur2, new List<UtilisateurModel>());
 
-            groupe.ajouterMembres(context.ListeUtilisateurs.ToList(), gm.IdGroupe);
-            utilisateur.Groupes.Add(gm);
-            utilisateur2.Groupes.Add(gm);
+            groupe.AjouterMembres(new List<UtilisateurModel> { utilisateur, utilisateur3 }, gm.IdGroupe);
+            //utilisateur.Groupes.Add(gm);
+            //utilisateur2.Groupes.Add(gm);
 
-            groupe.changeAdmin(utilisateur2, gm.IdGroupe);
+            //Image img = Image.FromFile("D:\\Cours\\ChatUp\\img.png");
+
+            //gm.ImageGroupe = Outils.ImageToByteArray(img);
+
+            //groupe.ChangeAdmin(utilisateur2, gm.IdGroupe);
             context.SaveChanges();
 
             base.Seed(context);

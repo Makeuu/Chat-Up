@@ -1,5 +1,4 @@
-﻿@model ChatUp.Models.SessionModel
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,7 +20,7 @@
             <div class="container">
                 <div class="nav-wrapper">
                     <a class="page-title">Chat - Up</a>
-                    @if ((bool)@ViewData["Authentifie"])
+                    @if (Request.IsAuthenticated)
                     {
                         <ul class="right hide-on-med-and-down">
                             <li>@ViewData["Pseudo"]</li>
