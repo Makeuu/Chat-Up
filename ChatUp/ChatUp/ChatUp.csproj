@@ -328,7 +328,6 @@
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Utilisateur\Login.cshtml" />
     <Content Include="Views\Utilisateur\Inscrire.cshtml" />
-    <Content Include="Views\Utilisateur\Profil.cshtml" />
     <Content Include="Views\Utilisateur\Groupes.cshtml" />
     <Content Include="Views\ProfilModels\Create.cshtml" />
     <Content Include="Views\ProfilModels\Details.cshtml" />
