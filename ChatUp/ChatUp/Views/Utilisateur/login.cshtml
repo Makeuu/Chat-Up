@@ -6,7 +6,7 @@
 
 @section Menu
 {
-    @if ((bool)@ViewData["Authentifie"])
+    @if (Request.IsAuthenticated)
     {
         <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
         <li><a href="#!"><i class="material-icons">contacts</i></a></li>
@@ -20,7 +20,7 @@
     }
 }
 
-@if ((bool)@ViewData["Authentifie"])
+@if (Request.IsAuthenticated)
 {
     <h3>
         Vous êtes déjà authentifié avec le login :

@@ -10,12 +10,8 @@ namespace ChatUp.Controllers
         // GET : Formulaire d'inscription
         public ActionResult Inscrire()
         {
-            /*L'argument authentifie est présent dans chaque page pour un contenu intéractif.
-             A voir si on peut le mettre directement dans les pages plutôt que dans chaque vue...
-             Au début je testais la session mais ici la vue travaille avec le model Utilisateur. Du coup la page plante lors du test.
-             */
+ 
             ViewData["Succes"] = true;
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             return View();
         }
 
@@ -37,13 +33,11 @@ namespace ChatUp.Controllers
                 /*Sinon on renvoit la page avec un message d'erreur*/
                 else
                 {
-                    ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
                     ViewData["Succes"] = flag;
                     return View();
                 }
             }
             // Sinon on renvoit la page
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             ViewData["Succes"] = flag;
             return View();
         }
@@ -56,7 +50,6 @@ namespace ChatUp.Controllers
                 DalUtilisateur Dal = new DalUtilisateur();
                 viewModel.Utilisateur = Dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
             }
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             return View(viewModel);
         }
 
@@ -78,7 +71,6 @@ namespace ChatUp.Controllers
                 }
                 ModelState.AddModelError("Utilisateur.Prenom", "Prénom et/ou mot de passe incorrect(s)");
             }
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             return View(viewModel);
         }
         public ActionResult Deconnexion()
@@ -99,15 +91,7 @@ namespace ChatUp.Controllers
 
         public ActionResult Groupes()
         {
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             return View();
         }
-
-        public ActionResult Profil()
-        {
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
-            return View();
-        }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
 namespace ChatUp.Models
@@ -19,7 +20,10 @@ namespace ChatUp.Models
         [Display(Name = "Mot de passe")]
         public string MotDePasse { get; set; }
         public DateTime DateInscription { get; set; }
-        public ProfilModel Profil { get; set; }
+        
+        [ForeignKey("Profil")]
+        public int IdProfil { get; set; }
+        public virtual ProfilModel Profil { get; set; }
     }
 
     public class ProfilModel
