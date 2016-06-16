@@ -4,7 +4,7 @@
 
 @section Menu
 {
-    @if ((bool)@ViewData["Authentifie"])
+    @if (Request.IsAuthenticated)
     {
         <li><a href="/"><i class="material-icons">perm_identity</i></a></li>
         <li><a href="@Url.Action("Profil","Utilisateur")"><i class="material-icons">contacts</i></a></li>

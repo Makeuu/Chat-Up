@@ -23,8 +23,10 @@
                     @if (Request.IsAuthenticated)
                     {
                         <ul class="right hide-on-med-and-down">
-                            <li>@ViewData["Pseudo"]</li>
-                            <li>@Html.ActionLink("Deconnexion", "Deconnexion","Utilisateur")</li>
+                            <li>
+                                @Html.Encode(User.Identity.Name)
+                            </li>
+                            <li>@Html.ActionLink("Deconnexion", "Deconnexion", "Utilisateur")</li>
                         </ul>
                     }
                 </div>

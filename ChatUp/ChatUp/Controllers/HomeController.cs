@@ -14,10 +14,8 @@ namespace ChatUp.Controllers
             {
                 DalUtilisateur Dal = new DalUtilisateur();
                 viewModel.Utilisateur = Dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
-                ViewData["Pseudo"] = viewModel.Utilisateur.Email;
 
             }
-            ViewData["Authentifie"] = HttpContext.User.Identity.IsAuthenticated;
             return View(viewModel);
         }
     }

@@ -231,6 +231,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DiscussionViewModel.cs" />
     <Compile Include="ViewModels\GroupeViewModel.cs" />
+    <Compile Include="Controllers\ProfilModelsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\materialize.css" />
@@ -353,6 +354,10 @@
     <Content Include="Views\Discussion\Details.cshtml" />
     <Content Include="Views\Discussion\Creer.cshtml" />
     <Content Include="Views\Discussion\AfficherMessages.cshtml" />
+    <Content Include="Views\Utilisateur\Groupes.cshtml" />
+    <Content Include="Views\ProfilModels\Create.cshtml" />
+    <Content Include="Views\ProfilModels\Details.cshtml" />
+    <Content Include="Views\ProfilModels\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

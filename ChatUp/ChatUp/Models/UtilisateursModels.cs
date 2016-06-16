@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChatUp.Models
 {
@@ -13,13 +15,15 @@ namespace ChatUp.Models
         [Display(Name = "Adresse Email")]
         [EmailAddress]
         public string Email { get; set; }
-        
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
         public string MotDePasse { get; set; }
-
         public DateTime DateInscription { get; set; }
+        
+        [ForeignKey("Profil")]
+        public int IdProfil { get; set; }
+        public virtual ProfilModel Profil { get; set; }
         public ProfilModel Profil { get; set; }
         
         public virtual List<GroupeModel> Groupes { get; set; }
@@ -52,14 +56,11 @@ namespace ChatUp.Models
         [Key]
         [Required]
         [Display(Name = "Adresse Email")]
-        public string Email { get; set; }
-
+        public String Email { get; set; }
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
-        public string MotDePasse { get; set; }
-
+        public String MotDePasse { get; set; }
         public UtilisateurModel Utilisateur { get; set; }
-
         public bool Authentifie { get; set; }
     }
 
