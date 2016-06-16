@@ -1,0 +1,80 @@
+﻿@model ChatUp.Models.GroupeModel
+
+@{
+    ViewBag.Title = "Supprimer groupe";
+}
+
+@section Menu
+{
+    @if (Request.IsAuthenticated)
+    {
+        <li><a href="/"><i class="material-icons">perm_identity</i></a></li>
+        <li><a href="@Url.Action("Details", "ProfilModels")"><i class="material-icons">contacts</i></a></li>
+        <li class="active"><a href="@Url.Action("Index","Discussion")"><i class="material-icons">question_answer</i></a></li>
+        <li><a href="#!"><i class="material-icons">settings</i></a></li>
+        <li><a href=@Url.Action("Deconnexion","Utilisateur")><i class="material-icons">power_settings_new</i></a></li>
+    }
+    else
+    {
+        <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+    }
+}
+
+<h2>Delete</h2>
+
+<h3>Êtes-vous sûr de vouloir supprimer ce groupe ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrateurGroupe.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrateurGroupe.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomGroupe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomGroupe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageGroupe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageGroupe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvitationAutorisee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvitationAutorisee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreationGroupe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreationGroupe)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Retourner à la liste des groupes", "Index")
+        </div>
+    }
+</div>

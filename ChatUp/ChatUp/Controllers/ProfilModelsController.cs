@@ -21,13 +21,19 @@ namespace ChatUp.Views.Utilisateur
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                string idUtilisateur = HttpContext.User.Identity.Name;
+                UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+
+                id = utilisateur.Profil.ProfilId;
             }
+
             ProfilModel profilModel = await db.ListeProfils.FindAsync(id);
+
             if (profilModel == null)
             {
                 return HttpNotFound();
             }
+
             return View(profilModel);
         }
 

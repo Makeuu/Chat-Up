@@ -198,15 +198,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiscussionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Dal\BddInitializer.cs" />
+    <Compile Include="Dal\DalContenu.cs" />
+    <Compile Include="Dal\DalGroupe.cs" />
     <Compile Include="Dal\DalProfil.cs" />
     <Compile Include="Dal\DalSession.cs" />
+    <Compile Include="Dal\IDalContenu.cs" />
     <Compile Include="Dal\IDalGroupe.cs" />
+    <Compile Include="Dal\IDalMessage.cs" />
+    <Compile Include="Dal\IDalPieceJointe.cs" />
     <Compile Include="Dal\IDalProfil.cs" />
     <Compile Include="Dal\DalUtilisateur.cs" />
+    <Compile Include="Dal\Outils.cs" />
     <Compile Include="Dal\IDalSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,11 +223,13 @@
     <Compile Include="Models\DiscussionsModels.cs" />
     <Compile Include="Models\EvenementsModels.cs" />
     <Compile Include="Dal\IDalUtilisateur.cs" />
+    <Compile Include="Models\UtilisateursModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\UtilisateursModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DiscussionViewModel.cs" />
+    <Compile Include="ViewModels\GroupeViewModel.cs" />
     <Compile Include="Controllers\ProfilModelsController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +288,7 @@
     <Content Include="Content\fonts\roboto\Roboto-Thin.ttf" />
     <Content Include="Content\fonts\roboto\Roboto-Thin.woff" />
     <Content Include="Content\fonts\roboto\Roboto-Thin.woff2" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -328,6 +338,15 @@
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Utilisateur\Login.cshtml" />
     <Content Include="Views\Utilisateur\Inscrire.cshtml" />
+    <Content Include="Views\Utilisateur\Profil.cshtml" />
+    <Content Include="Views\Discussion\EnvoyerMessage.cshtml" />
+    <Content Include="Views\Discussion\Supprimer.cshtml" />
+    <Content Include="Views\Discussion\Lister.cshtml" />
+    <Content Include="Views\Discussion\Index.cshtml" />
+    <Content Include="Views\Discussion\Editer.cshtml" />
+    <Content Include="Views\Discussion\Details.cshtml" />
+    <Content Include="Views\Discussion\Creer.cshtml" />
+    <Content Include="Views\Discussion\AfficherMessages.cshtml" />
     <Content Include="Views\Utilisateur\Groupes.cshtml" />
     <Content Include="Views\ProfilModels\Create.cshtml" />
     <Content Include="Views\ProfilModels\Details.cshtml" />
