@@ -24,6 +24,8 @@ namespace ChatUp.Models
         public virtual ProfilModel Profil { get; set; }
         
         public virtual List<GroupeModel> Groupes { get; set; }
+
+        public virtual List<UtilisateurModel> ListeAmis { get; set; }
     }
 
     public class ProfilModel
