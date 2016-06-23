@@ -1,37 +1,42 @@
-﻿@model ChatUp.ViewModels.DiscussionViewModel
+﻿@model ChatUp.Models.GroupeModel
 
-<table class="table scrollable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Message.DateEnvoi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Message.Message)
-        </th>
-        <th></th>
-    </tr>
+<table>
+    <tbody>
+        @foreach (var msg in Model.ListeMessages)
+        {
+            string date = msg.DateEnvoi.ToShortTimeString();
 
-    @foreach (var msg in Model.Groupe.ListeMessages)
-    {
-        <tr class="me">
-            <td>
-                @Html.DisplayFor(modelItem => msg.DateEnvoi)
-            </td>
-            @if (msg.AuteurContenu.Email == HttpContext.Current.User.Identity.Name)
+            if (msg.AuteurContenu.Email == HttpContext.Current.User.Identity.Name)
             {
-                <td class="you">
-                    @msg.AuteurContenuId
-                    @Html.DisplayFor(modelItem => msg.Message)
-                </td>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="bubble me z-depth-1">
+                        <div>
+                            <i class="material-icons">person_pin</i>
+                            @*<img src="" alt=@msg.AuteurContenu.Profil.Prenom class="circle">*@
+                            @Html.DisplayFor(modelItem => msg.Message)
+                        </div>
+                    </td>
+                </tr>
             }
             else
             {
-                <td class="me">
-                    @msg.AuteurContenuId
-                    @Html.DisplayFor(modelItem => msg.Message)
-                </td>
+                <tr>
+                    <td class="bubble you z-depth-1">
+                        <div>
+                            <i class="material-icons">person_pin</i>
+                            @*<img src="" alt=@msg.AuteurContenu.Profil.Prenom class="circle">*@
+                            @Html.DisplayFor(modelItem => msg.Message)
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
             }
-        </tr>
-
-    }
+            @*<div class="right-align">
+                    @date
+                </div>*@
+        }
+    </tbody>
 </table>

@@ -3,7 +3,6 @@ using ChatUp.Models;
 using ChatUp.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -13,7 +12,7 @@ namespace ChatUp.Controllers
     public class DiscussionController : Controller
     {
         private BddContext db = new BddContext();
-        
+
         public ActionResult Index()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -29,41 +28,36 @@ namespace ChatUp.Controllers
             {
                 UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(HttpContext.User.Identity.Name);
 
-                List<GroupeModel> listeGroupes = db.ListeGroupes.ToList();
-                List<GroupeModel> groupeUtilisateur = new List<GroupeModel>();
+                List<GroupeModel> listeGroupes = ListerGroupes(utilisateur);
 
-                foreach(GroupeModel gm in listeGroupes)
-                {
-                    if (gm.MembresGroupe.Contains(utilisateur) || gm.AdministrateurGroupe == utilisateur)
-                        groupeUtilisateur.Add(gm);
-                }
+                listeGroupes = TrierGroupeParDate(listeGroupes);
 
-                return PartialView(groupeUtilisateur);
+                return PartialView(listeGroupes);
             }
             else
             {
                 return Redirect("~/Home/Index");
             }
         }
-        
+
         public ActionResult Details(int? id)
         {
             if (!HttpContext.User.Identity.IsAuthenticated)
                 return Redirect("~/Home/Index");
-            
+
             if (id == null)
             {
                 UtilisateurModel utilisateur = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
                 List<GroupeModel> listeGrp = db.ListeGroupes.ToList();
 
-                foreach(GroupeModel gm in listeGrp)
+                foreach (GroupeModel gm in listeGrp)
                 {
                     if (gm.MembresGroupe.Contains(utilisateur) || gm.AdministrateurGroupe == utilisateur)
                     {
                         id = gm.IdGroupe;
                         break;
                     }
-                }                
+                }
             }
 
             GroupeModel groupeModel = db.ListeGroupes.Find(id);
@@ -73,21 +67,15 @@ namespace ChatUp.Controllers
 
             return View(groupeModel);
         }
-        
+
         public ActionResult Creer()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                //string idUtilisateur = HttpContext.User.Identity.Name;
-
-                //var listeGroupes = db.ListeGroupes.Where(g => g.AdministrateurGroupeId == HttpContext.User.Identity.Name);
-
                 return View();
-            }
             else
                 return Redirect("~/Home/Index");
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Creer([Bind(Include = "IdGroupe,NomGroupe,ImageGroupe,InvitationAutorisee,DateCreationGroupe,AdministrateurGroupeId")] GroupeModel groupeModel)
@@ -130,23 +118,23 @@ namespace ChatUp.Controllers
 
             return View(groupeModel);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Editer([Bind(Include = "IdGroupe,NomGroupe,ImageGroupe,InvitationAutorisee,AdministrateurGroupeId")] GroupeModel groupeModel)
+        public ActionResult Editer([Bind(Include = "IdGroupe,NomGroupe,ImageGroupe,InvitationAutorisee,DateCreationGroupe,AdministrateurGroupeId,AdministrateurGroupe,MembresGroupe,ListeMessages")] GroupeModel groupeModel)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(groupeModel).State = EntityState.Modified;
+            GroupeModel groupe = db.ListeGroupes.Find(groupeModel.IdGroupe);
 
-                db.SaveChanges();
+            groupe.NomGroupe = groupeModel.NomGroupe;
+            groupe.InvitationAutorisee = groupeModel.InvitationAutorisee;
+            groupe.ImageGroupe = groupeModel.ImageGroupe;
+            groupe.AdministrateurGroupe = db.ListeUtilisateurs.Find(groupeModel.AdministrateurGroupeId);
 
-                return RedirectToAction("Index");
-            }
+            db.SaveChanges();
 
-            return View(groupeModel);
+            return View("Index");
         }
-        
+
         public ActionResult Supprimer(int? id)
         {
             if (id == null)
@@ -159,7 +147,7 @@ namespace ChatUp.Controllers
 
             return View(groupeModel);
         }
-        
+
         [HttpPost, ActionName("Supprimer")]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmerSuppression(int id)
@@ -172,15 +160,31 @@ namespace ChatUp.Controllers
             return RedirectToAction("Index");
         }
 
+
         [ChildActionOnly]
-        public ActionResult AfficherMessages(DiscussionViewModel discussion)
+        public ActionResult AfficherMessages(GroupeModel groupe)
         {
             if (HttpContext.User.Identity.IsAuthenticated)
-                return PartialView("AfficherMessages", discussion);
+                return PartialView("AfficherMessages", groupe);
             else
                 return Redirect("~/Home/Index");
         }
 
+        [ChildActionOnly]
+        public ActionResult Informations(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GroupeModel groupeModel = db.ListeGroupes.Find(id);
+
+            if (groupeModel == null)
+                return HttpNotFound();
+
+            return PartialView(groupeModel);
+        }
+
+        [HttpGet]
         [ChildActionOnly]
         public ActionResult EnvoyerMessage(int? idGroupe)
         {
@@ -197,6 +201,20 @@ namespace ChatUp.Controllers
             }
             else
                 return Redirect("~/Home/Index");
+        }
+
+        [ChildActionOnly]
+        public ActionResult ListerMembres(int? id)
+        {
+            if (!HttpContext.User.Identity.IsAuthenticated)
+                return Redirect("~/Home/Index");
+
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            GroupeModel groupe = db.ListeGroupes.Find(id);
+
+            return PartialView(groupe);
         }
 
         [HttpPost]
@@ -224,14 +242,14 @@ namespace ChatUp.Controllers
                         Message = discussion.Message.Message
                     };
 
-                    db.ListeMessages.Add(message);
                     groupe.ListeMessages.Add(message);
                     discussion.Groupe = groupe;
+                    discussion.Message = new MessageModel();
 
                     db.SaveChanges();
                 }
 
-                return PartialView();
+                return PartialView(discussion);
             }
             else
                 return Redirect("~/Home/Index");
@@ -243,6 +261,44 @@ namespace ChatUp.Controllers
                 db.Dispose();
 
             base.Dispose(disposing);
+        }
+
+        private List<GroupeModel> ListerGroupes(UtilisateurModel utilisateur)
+        {
+            List<GroupeModel> listeGroupes = db.ListeGroupes.ToList();
+            List<GroupeModel> groupeUtilisateur = new List<GroupeModel>();
+
+            foreach (GroupeModel gm in listeGroupes)
+            {
+                if (gm.MembresGroupe.Contains(utilisateur) || gm.AdministrateurGroupe == utilisateur)
+                    groupeUtilisateur.Add(gm);
+            }
+
+            return groupeUtilisateur;
+        }
+
+        private List<MessageModel> TrierMessageParDate(List<MessageModel> liste)
+        {
+            if (liste.Count > 0)
+            {
+                liste = (from msg in liste
+                         orderby msg.DateEnvoi descending
+                         select msg).ToList();
+            }
+
+            return liste;
+        }
+
+        private List<GroupeModel> TrierGroupeParDate(List<GroupeModel> listeGrp)
+        {
+            if (listeGrp.Count > 0)
+            {
+                listeGrp = (from grp in listeGrp
+                            orderby grp.DateCreationGroupe descending
+                            select grp).ToList();
+            }
+
+            return listeGrp;
         }
     }
 }

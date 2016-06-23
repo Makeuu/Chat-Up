@@ -20,54 +20,6 @@
     }
 }
 
-<div>
-    @Html.Action("Lister")
-</div>
-
-<h2>Details</h2>
-
-<div>
-    <h4>GroupeModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdministrateurGroupe.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AdministrateurGroupe.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NomGroupe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomGroupe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageGroupe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageGroupe)
-
-
-            @*@{
-                    System.Drawing.Image img =  ChatUp.Dal.Outils.ByteArrayToImage(Model.ImageGroupe);
-                }*@
-        </dd>
-
-    </dl>
-</div>
-
-<br />
-
-<div>
-    @Html.Action("AfficherMessages", new ChatUp.ViewModels.DiscussionViewModel { Groupe = Model, Message = new ChatUp.Models.MessageModel() })
-</div>
-
-<div>
+<div class="row">
     @Html.Action("EnvoyerMessage", new { idGroupe = Model.IdGroupe })
 </div>

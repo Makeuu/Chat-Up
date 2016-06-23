@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using ChatUp.Models;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
 
 namespace ChatUp.Dal
 {

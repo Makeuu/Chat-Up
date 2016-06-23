@@ -53,10 +53,10 @@ namespace ChatUp.Models
         public DateTime DateEnvoi { get; set; }
 
         [ForeignKey("AuteurContenu")]
-        public string AuteurContenuId;
+        public string AuteurContenuId { get; set; }
 
         [ForeignKey("Groupe")]
-        public int GroupeId;
+        public int GroupeId { get; set; }
         
         public virtual UtilisateurModel AuteurContenu { get; set; }
         public virtual GroupeModel Groupe { get; set; }

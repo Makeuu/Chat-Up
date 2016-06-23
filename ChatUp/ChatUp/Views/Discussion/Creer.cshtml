@@ -20,54 +20,68 @@
     }
 }
 
-<h2>Créer un groupe</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
+    <div class="row">
+        @Html.Action("Lister")
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.NomGroupe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NomGroupe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NomGroupe, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageGroupe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageGroupe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageGroupe, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="col s12 m8 l10">
+            <div class="card">
+                <div class="card-content">
+                    <div class="center-align">
+                        <figure>
+                            <img src="~/Content/pictures/wallhaven-316401.jpg" class="imgGroupe">
+                            <figcaption><b>Nouveau groupe</b></figcaption>
+                        </figure>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.InvitationAutorisee)
-            @Html.CheckBoxFor(model => model.InvitationAutorisee)
-        </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.NomGroupe, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.EditorFor(model => model.NomGroupe, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NomGroupe, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.InvitationAutorisee)
+                                    @Html.CheckBoxFor(model => model.InvitationAutorisee)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.InvitationAutorisee, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.InvitationAutorisee)
-                        @Html.ValidationMessageFor(model => model.InvitationAutorisee, "", new { @class = "text-danger" })
+                <div class="card-panel center-align">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Créer" class="btn btn-default" />
+                        <button type="button" value="Retour" class="btn btn-default">
+                            @Html.ActionLink("Retour", "Details", new { @class = "buttonLink" })
+                        </button>
                     </div>
                 </div>
-            </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Créer groupe" class="btn btn-default" />
+                <div class="card">
+                    <div class="card-title center-align">
+                        <span class="center-align">
+                            Ajouter des membres au groupe
+                        </span>
+                    </div>
+
+                    <div class="card-panel">
+                        <span class="card-title scrollable">
+                            @*@Html.Action("ListerMembres", "Discussion", new { id = Model.IdGroupe })*@
+                        </span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Retourner à la liste des groupes", "Index")
-</div>
+}
