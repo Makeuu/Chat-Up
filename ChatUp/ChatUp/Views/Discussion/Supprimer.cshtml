@@ -20,61 +20,34 @@
     }
 }
 
-<h2>Delete</h2>
 
-<h3>Êtes-vous sûr de vouloir supprimer ce groupe ?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdministrateurGroupe.Email)
-        </dt>
+<div class="row">
+    @Html.Action("Lister")
 
-        <dd>
-            @Html.DisplayFor(model => model.AdministrateurGroupe.Email)
-        </dd>
+    <div class="col s12 m8 l10">
+        <div class="card">
+            <div class="card-content">
+                <div class="center-align">
+                    <h4><b>@Model.NomGroupe</b></h4>
+                    <h5>Êtes-vous sûr de vouloir supprimer ce groupe ?</h5>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NomGroupe)
-        </dt>
+                <h4>Information sur le groupe: </h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.NomGroupe)
-        </dd>
+                @Html.Action("Informations", new { id = Model.IdGroupe })
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageGroupe)
-        </dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.ImageGroupe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.InvitationAutorisee)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InvitationAutorisee)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreationGroupe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreationGroupe)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Retourner à la liste des groupes", "Index")
+                <div class="card-panel center-align">
+                    <input type="submit" value="Supprimer" class="btn btn-default" />
+                    <button type="button" value="Annuler" class="btn btn-default">
+                        @Html.ActionLink("Retour", "Details", new { @class = "buttonLink" })
+                    </button>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>

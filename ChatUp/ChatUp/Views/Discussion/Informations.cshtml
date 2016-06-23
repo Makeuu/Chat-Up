@@ -1,0 +1,25 @@
+﻿@model ChatUp.Models.GroupeModel
+
+<ul class="collection">
+    <li class="collection-item">
+        <b>Administrateur: </b>
+        @Html.DisplayFor(model => model.AdministrateurGroupe.Profil.Nom)
+        @Html.DisplayFor(model => model.AdministrateurGroupe.Profil.Prenom)
+    </li>
+
+
+    <li class="collection-item">
+        <b>Créé le : </b>
+        @Html.DisplayFor(model => model.DateCreationGroupe)
+    </li>
+
+    <li class="collection-item">
+        <b>Nombre de membres: </b>
+        @Model.MembresGroupe.Count
+    </li>
+
+    <li class="collection-item">
+        <b>Nombre de messages: </b>
+        @Model.ListeMessages.Count
+    </li>
+</ul>

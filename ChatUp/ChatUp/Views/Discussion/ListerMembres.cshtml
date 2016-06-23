@@ -1,0 +1,42 @@
+﻿@model ChatUp.Models.GroupeModel
+
+<ul class="collection">
+
+    <li class="collection-item avatar">
+        <a href="@Url.Action("Details", "ProfilModels", new { id = Model.AdministrateurGroupe.Profil.ProfilId })">
+            <img src="" alt="" class="circle" />
+            <h6 class="title">
+                @Html.DisplayFor(modelItem => Model.AdministrateurGroupe.Profil.Nom)
+                @Html.DisplayFor(modelItem => Model.AdministrateurGroupe.Profil.Prenom)
+            </h6>
+        </a>
+
+        @if (Context.Request.Path.Contains("Editer"))
+        {
+            <h6><i>Administrateur du groupe</i></h6>
+            <a href="#!" class="secondary-content btn-floating green"><i class="material-icons">grade</i></a>
+        }
+    </li>
+
+    @foreach (var item in Model.MembresGroupe)
+    {
+        <li class="collection-item avatar">
+            <a href="@Url.Action("Details", "ProfilModels", new { id = item.Profil.ProfilId })">
+                <img src="" alt="" class="circle" />
+                <h6 class="title">
+                    @Html.DisplayFor(modelItem => item.Profil.Nom)
+                    @Html.DisplayFor(modelItem => item.Profil.Prenom)
+                </h6>
+            </a>
+
+            @if (Context.Request.Path.Contains("Editer"))
+            {
+                <h6>
+                    <i>@Html.Display(item.Email)</i>
+                    <i>@Html.ActionLink("Exclure du groupe", "ExclureMembre", new { id = item.Email })</i>
+                </h6>
+                <a href="#!" class="secondary-content btn-floating green"><i class="material-icons">grade</i></a>
+            }
+        </li>
+    }
+</ul>

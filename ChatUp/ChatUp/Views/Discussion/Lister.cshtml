@@ -1,30 +1,56 @@
 ﻿@model IEnumerable<ChatUp.Models.GroupeModel>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NomGroupe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageGroupe)
-        </th>
-        <th></th>
-    </tr>
+<div class="col s12 m4 l2" id="listeGroupes">
+    <ul class="collection menuGroupe">
+        <li class="collection-item">
+            <a href="@Url.Action("Creer", "Discussion")">
+                <i class="material-icons">add</i>
+                <span class="title">Créer un groupe</span>
+            </a>
+        </li>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomGroupe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageGroupe)
-            </td>
-            <td>
-                @Html.ActionLink("Editer", "Editer", new { id = item.IdGroupe }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdGroupe }) |
-                @Html.ActionLink("Supprimer", "Supprimer", new { id = item.IdGroupe })
-            </td>
-        </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            ChatUp.Models.MessageModel messageModel = new ChatUp.Models.MessageModel();
+
+            string dernierMessage = "";
+
+            if (item.ListeMessages.Count > 0)
+            {
+                List<ChatUp.Models.MessageModel> listeMessages = item.ListeMessages.ToList();
+                messageModel = listeMessages[listeMessages.Count - 1];
+
+                dernierMessage = messageModel.AuteurContenu.Profil.Prenom + ": " + messageModel.Message;
+
+                if (messageModel.Message != null && messageModel.Message.Length > 20)
+                {
+                    dernierMessage = dernierMessage.Substring(0, 20) + "...";
+                }
+            }
+            else
+            {
+                dernierMessage = "";
+            }
+
+            <li class="collection-item avatar">
+                <a href="@Url.Action("Details", "Discussion", new { id = item.IdGroupe })">
+                    <img src="" alt="" class="circle" />
+                    <h6 class="title">@Html.DisplayFor(modelItem => item.NomGroupe)</h6>
+                </a>
+                <table id="dernierMessage">
+                    <tbody>
+                        <tr>
+                            <td>@dernierMessage</td>
+                            <td class="right-align">
+                                @if (dernierMessage != "")
+                                {
+                                    @messageModel.DateEnvoi.ToShortTimeString();
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+        }
+    </ul>
+</div>
