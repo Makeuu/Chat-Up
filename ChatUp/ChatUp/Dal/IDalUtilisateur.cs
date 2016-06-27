@@ -6,8 +6,8 @@ namespace ChatUp.Dal
 {
     public interface IDalUtilisateur : IDisposable
     {
-        List<UtilisateurModel> ObtientTousLesUtilisateurs();
+        List<UtilisateursModels> ObtientTousLesUtilisateurs();
         bool CreerUtilisateur(string email, string motdepasse);
-        UtilisateurModel ObtenirUtilisateur(string email);
+        UtilisateursModels ObtenirUtilisateur(string email);
     }
 }

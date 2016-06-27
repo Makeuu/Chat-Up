@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChatUp.Models
 {
-    public class UtilisateurModel
+    public class UtilisateursModels
     {
         [Key]
         [Required]
@@ -25,7 +25,7 @@ namespace ChatUp.Models
         
         public virtual List<GroupeModel> Groupes { get; set; }
 
-        public virtual List<UtilisateurModel> ListeAmis { get; set; }
+        public virtual List<UtilisateursModels> ListeAmis { get; set; }
     }
 
     public class ProfilModel
@@ -57,7 +57,7 @@ namespace ChatUp.Models
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
         public string MotDePasse { get; set; }
-        public UtilisateurModel Utilisateur { get; set; }
+        public UtilisateursModels Utilisateur { get; set; }
         public bool Authentifie { get; set; }
     }
 

@@ -24,8 +24,8 @@ namespace ChatUp
                       );
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/materialize.css",
-                      "~/Content/site.css"));
+                "~/Content/materialize.css",
+                "~/Content/site.css"));
         }
     }
 }
