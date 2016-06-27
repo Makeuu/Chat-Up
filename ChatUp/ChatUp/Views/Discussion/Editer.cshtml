@@ -46,7 +46,10 @@
 
                     <div>
                         @Html.LabelFor(model => model.NomGroupe)
-                        @Html.EditorFor(model => model.NomGroupe, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.NomGroupe, new { @class = "form-control " })
+
+                        @*@Html.LabelFor(model => model.AdministrateurGroupe)
+                        @Html.DropDownListFor(m => m.AdministrateurGroupeId, new SelectList(Model.MembresGroupe, "Email", "Profil.Prenom"), new { @class = "form-control dropdown-content" })*@
                     </div>
                 </div>
 

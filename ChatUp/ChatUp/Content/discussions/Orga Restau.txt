@@ -1,0 +1,29 @@
+﻿0;Ma question va être simple : j'ai faim ! 
+1;Ouaiiiiiiiiiiiiis!
+2;On mange ou du coups ?!
+3;Moi je veux manger un indien !
+4;Cannibalisme !!!!! :O
+5;Nan un chinois !
+6;Personne veut un couscous ?
+2;Moi j'suis en mode vampire faut attendre la tombée de la nuit pour manger :x
+0;Héhéhé !!!
+0;Je connais un café pas loin
+1;QUI T'AS PARLE DE CAFE !! ON VEUT DE LA VIANDE !!
+0;C'est quel genre de zigoto c'ui là ?
+2;Mais sinon on se fait qqch à la maison ?
+0;Nan flemme
+2;Au restau c'est tjr trop long
+0;Jamais content vous
+3;On se fait un ciné après ?
+0;On arrive même pas à organiser un restau tu veux faire un ciné ? Tu fous plus le bazar qu'autre chose
+1;Ouais !!!
+1;Manger ! Manger ! Manger !
+0;Soyez force de propositions !
+2;Mcdo ?
+0;oui
+1;oui
+3;oui
+4;oui
+5;oui
+6;oui
+2;Problème réglé.

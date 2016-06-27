@@ -16,6 +16,15 @@
         sendbox.value = "";
         sendbox.focus();
 
+        $('.modal-trigger').leanModal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: 0, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+            ready: function () {}, // Callback for Modal open
+            complete: function () {} // Callback for Modal close
+        });
+
         chat.scrollTop = chat.scrollHeight;
 
         lienpanneauLateral.addEventListener('click', function () {
@@ -24,10 +33,13 @@
                 panneauLateral.classList.toggle(secPannelClasses[i]);
             }
 
+            panneauLateral.classList.toggle('pannel-visible');
+
         }, false);
 
         headerInformation.addEventListener('click', function () {
             bodyInformation.classList.toggle('pannel-visible');
         }, false);
+
     };
 })();

@@ -14,7 +14,7 @@ namespace ChatUp
         {
             DalUtilisateur dal = new DalUtilisateur();
             List<UtilisateurModel> liste = dal.ObtientTousLesUtilisateurs();
-            ConfigureAuth(app);
+            //ConfigureAuth(app);
         }
     }
 }

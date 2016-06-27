@@ -23,15 +23,25 @@ namespace ChatUp.Dal
                         .WithMany(usr => usr.Groupes)
                         .Map(cs =>
                         {
-                            cs.MapLeftKey("IdGroupe"); 
+                            cs.MapLeftKey("IdGroupe");
                             cs.MapRightKey("Email");
                             cs.ToTable("GroupeUtilisateur");
                         });
+            
+            modelBuilder.Entity<UtilisateurModel>()
+                .HasMany(u => u.ListeAmis)
+                .WithMany()
+                .Map(cs =>
+                 {
+                     cs.MapLeftKey("Ami");
+                     cs.MapRightKey("Utilisateur");
+                     cs.ToTable("Amis");
+                 });
         }
 
         public DbSet<UtilisateurModel> ListeUtilisateurs { get; set; }
         public DbSet<ProfilModel> ListeProfils { get; set; }
-        public DbSet<SessionModel>ListeSessions { get; set; }
+        public DbSet<SessionModel> ListeSessions { get; set; }
         public DbSet<GroupeModel> ListeGroupes { get; set; }
         public DbSet<MessageModel> ListeMessages { get; set; }
         public DbSet<PieceJointeModel> ListePiecesJointes { get; set; }

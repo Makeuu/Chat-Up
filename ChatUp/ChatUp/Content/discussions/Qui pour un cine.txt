@@ -1,0 +1,23 @@
+﻿1;Y'a un super film à voir sur les musaraignes des îles vierges des galapagos
+0;T'as toujours des idées nazes toi
+2;Nan y'a le nouveau Besson !
+3;Le truc avec les tortues ?!
+0;T'as jamais été très humain toi..
+4;Pourquoi pas un film d'horreur ?
+0;Toujours un bazar l'orga avec vous lol
+1;C'est pas drôle
+0;Bah non c'est un film d'horreur, banane
+1;Hey m'insulte pas de banane, banane !
+5;yooooooooo
+2;hahahahaha
+2;Et si on allait voir rocky ?
+0;Donc toi tu débarques avec 10 ans de retard et tu veux voir des films démodés ?
+0;T'as pas honte ? hahahaha
+1;Bon et si on allait sur place pour choisir ?
+0;Quelle heure ?
+1;Rendez vous à 20h 
+0;Hmm..
+0;OK
+2;ok
+3;ok
+1;good

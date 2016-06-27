@@ -1,0 +1,11 @@
+﻿0;Bonjour à tous, comment allez vous ?
+1;Bien bien
+2;La forme
+3;Moyen, normalement tu devais payer tes viennoiserie ce matin !
+4;Et le café !
+5;Quand est ce qu'on finit ?
+1;Programmons une réunion pour décider du prochain modele de machine à café 
+2;Je ne suis pas très café, je préfère le thé
+1;Pfff..
+0;Les problèmes commencent ...
+4;Hey ! le chef arrive ! tous au boulot vite

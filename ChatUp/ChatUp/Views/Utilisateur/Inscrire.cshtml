@@ -34,10 +34,10 @@
 
             <p>@HttpContext.Current.User.Identity.Name</p>
 
-            @if (!(bool)@ViewData["succes"])
-            {
+            @*@if (!(bool)@ViewData["succes"])
+            {*@
                 <p>Il y a eu un problème lors de l'inscription.</p>
-            }
+            @*}*@
 
             <button class="btn waves-effect waves-light" type="submit" name="action">
                 Inscription
