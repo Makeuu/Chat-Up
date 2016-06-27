@@ -318,7 +318,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -332,6 +334,7 @@
     <Content Include="Views\Discussion\Editer.cshtml" />
     <Content Include="Views\Discussion\Details.cshtml" />
     <Content Include="Views\Discussion\AfficherMessages.cshtml" />
+    <Content Include="Views\Utilisateur\Groupes.cshtml" />
     <Content Include="Views\ProfilModels\Create.cshtml" />
     <Content Include="Views\ProfilModels\Details.cshtml" />
     <Content Include="Views\ProfilModels\Edit.cshtml" />
@@ -347,7 +350,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -372,7 +377,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3466</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:3466/</IISUrl>
+          <IISUrl>http://localhost:8082/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://192.168.194.191:3306</CustomServerUrl>
