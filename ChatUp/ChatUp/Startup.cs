@@ -13,8 +13,8 @@ namespace ChatUp
         public void Configuration(IAppBuilder app)
         {
             DalUtilisateur dal = new DalUtilisateur();
-            List<UtilisateursModels> liste = dal.ObtientTousLesUtilisateurs();
-            ConfigureAuth(app);
+            List<UtilisateurModel> liste = dal.ObtientTousLesUtilisateurs();
+            //ConfigureAuth(app);
         }
     }
 }

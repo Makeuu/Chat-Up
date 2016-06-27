@@ -1,0 +1,12 @@
+﻿1;Salut !
+0;Hello !
+1;Comment vas-tu ?
+0;Bien & toi ?
+1;ça va, ça fait longtemps
+2;Taisez vous tous ! Qui a bu mon jus ?
+3;Hm...
+3;Je suis témoin : c'est pas moi !
+1;Bon allez je dois aller changer le petit
+2;Tout le monde s'en fiche, tqt pas !
+2;HAHAHAHA !
+0;Papa vous embrasse tous ! :*

@@ -2,31 +2,59 @@
 
 @Html.Action("Lister")
 
-<div class="col s12 m6 l10" id="panneauDiscussion">
+<div class="col s12 m6 l8" id="panneauDiscussion">
     <div class="card discussion">
         <div class="card-action center-align">
             @if (Model.Groupe.InvitationAutorisee || Model.Groupe.AdministrateurGroupe.Email == HttpContext.Current.User.Identity.Name)
             {
-                <a href="#">Inviter membres</a>
+                <a class="modal-trigger" href="#inviterMembre">Inviter Membre</a>
             }
 
-            <a href="#" class="right-align valign" id="lienpanneauLateral">Afficher informations</a>
-            
+            <a href="#" class="right-align valign" id="lienpanneauLateral">Masquer informations</a>
+
             @if (Model.Groupe.AdministrateurGroupe.Email == HttpContext.Current.User.Identity.Name)
             {
                 @Html.ActionLink("Editer le groupe", "Editer", new { id = Model.Groupe.IdGroupe })
-                @Html.ActionLink("Supprimer Groupe", "Supprimer", new { id = Model.Groupe.IdGroupe })
+                <a class="modal-trigger" href="#supprimerGroupe">Supprimer Groupe</a>
             }
         </div>
     </div>
 
-    <div class="chat scrollable discussion" id="listeMessages">
-        @Html.Action("AfficherMessages", new { Groupe = Model.Groupe })
+    <div class="chat scrollable" id="listeMessages">
+        <div id="historiqueMessages">
+            @Html.Action("AfficherMessages", new { id = Model.Groupe.IdGroupe })
+        </div>
+
+        <div id="inviterMembre" class="modal modal-fixed-footer scrollable">
+            <div class="modal-content">
+                <h5 class="center-align">Mes amis</h5>
+                @Html.Action("InviterMembre", "Discussion", new { idGroupe = Model.Groupe.IdGroupe, idUtilisateur = HttpContext.Current.User.Identity.Name })
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Retour</a>
+            </div>
+        </div>
+
+        <div id="supprimerGroupe" class="modal">
+            <div class="modal-content">
+                <div class="center-align">
+                    <h4><b>@Model.Groupe.NomGroupe</b></h4>
+                    <h5>Êtes-vous sûr de vouloir supprimer ce groupe ?</h5>
+                </div>
+
+                @Html.Action("Informations", new { id = Model.Groupe.IdGroupe })
+
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Supprimer", "Discussion", new { id = Model.Groupe.IdGroupe })" class="modal-action modal-close waves-effect waves-green btn-flat">Supprimer</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Annuler</a>
+            </div>
+        </div>
     </div>
 
     <div class="send_box pin-bottom discussion">
         @using (Html.BeginForm())
-            {
+        {
             @Html.AntiForgeryToken()
 
             <div class="input-field">
@@ -38,22 +66,22 @@
     </div>
 </div>
 
-<div class="col s12 m4 l0 card" id="panneauLateral">
+<div class="col s12 m4 l2 card" id="panneauLateral">
     <div class="card">
         <div class="card-content center-align" id="headerInformation">
-            <a href="#!"><i class="material-icons small orange600">info_outline</i></a>
+            <a href="#!"><i class="material-icons small">info_outline</i></a>
         </div>
 
-        <div class="pannel-visible" id="bodyInformation">
+        <div id="bodyInformation">
             @Html.Action("Informations", new { id = Model.Groupe.IdGroupe })
         </div>
     </div>
 
-    <div class="card">
+    <div class="card scrollable" id="listMembreDiscussion">
         <div class="card-content center-align">
             <span class="center-align"><i class="material-icons small">contacts</i></span>
         </div>
-
+            
         @Html.Action("ListerMembres", "Discussion", new { id = Model.Groupe.IdGroupe })
     </div>
 
@@ -69,5 +97,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    function ChargerVuePartielle() {
+        $.ajax({
+            url: '@Url.Action("AfficherMessages", new { id = Model.Groupe.IdGroupe })',
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#historiqueMessages').html(result);
+            }
+        })
+    }
+
+    window.setInterval(ChargerVuePartielle, 1000);
+</script>
 
 @Scripts.Render("~/Scripts/chatup/chat.js")

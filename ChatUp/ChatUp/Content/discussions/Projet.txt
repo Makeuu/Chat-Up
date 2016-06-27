@@ -1,0 +1,11 @@
+﻿1;Salut !
+2;Hello !
+1;J'ai mis en place la nouvelle architecture
+0;J'ai un soucis avec la dernière version du projet
+1;Que pasta ?
+0;Ca compile pas, j'ai plein d'erreurs à cause de fichiers manquant
+0;:(
+1;Hmm, il faut que tu supprimes tout et que tu essaies de récupérer la version proprement
+0;T'insinues que j'suis un cochon ?
+1;Héhéhé, carrément. Va bosser bonobo! :D
+2;Un peu de sérieux svp

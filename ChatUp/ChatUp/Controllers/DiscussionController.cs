@@ -16,7 +16,35 @@ namespace ChatUp.Controllers
         public ActionResult Index()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
-                return View();
+            {
+                UtilisateurModel utilisateur = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+                List<GroupeModel> listeGrp = db.ListeGroupes.ToList();
+
+                if (listeGrp.Count > 0)
+                {
+                    int id = 0;
+
+                    foreach (GroupeModel gm in listeGrp)
+                    {
+                        if (gm.MembresGroupe.Contains(utilisateur) || gm.AdministrateurGroupe == utilisateur)
+                        {
+                            id = gm.IdGroupe;
+                            break;
+                        }
+                    }
+
+                    GroupeModel groupeModel = db.ListeGroupes.Find(id);
+
+                    if (groupeModel == null)
+                        return View();
+                    
+                    return RedirectToAction("Details", new { id = groupeModel.IdGroupe });
+                }
+                else
+                {
+                    return View();
+                }
+            }
             else
                 return Redirect("~/Home/Index");
         }
@@ -94,7 +122,7 @@ namespace ChatUp.Controllers
 
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", new { id = groupeModel.IdGroupe });
                 }
                 else
                     return View(groupeModel);
@@ -132,25 +160,10 @@ namespace ChatUp.Controllers
 
             db.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Details", new { id = groupe.IdGroupe });
         }
 
         public ActionResult Supprimer(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            GroupeModel groupeModel = db.ListeGroupes.Find(id);
-
-            if (groupeModel == null)
-                return HttpNotFound();
-
-            return View(groupeModel);
-        }
-
-        [HttpPost, ActionName("Supprimer")]
-        [ValidateAntiForgeryToken]
-        public ActionResult ConfirmerSuppression(int id)
         {
             GroupeModel groupeModel = db.ListeGroupes.Find(id);
             db.ListeGroupes.Remove(groupeModel);
@@ -159,13 +172,15 @@ namespace ChatUp.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-        [ChildActionOnly]
-        public ActionResult AfficherMessages(GroupeModel groupe)
+        
+        public ActionResult AfficherMessages(int? id)
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
+            if (HttpContext.User.Identity.IsAuthenticated && id != null)
+            {
+                GroupeModel groupe = db.ListeGroupes.Find(id);
+
                 return PartialView("AfficherMessages", groupe);
+            }
             else
                 return Redirect("~/Home/Index");
         }
@@ -217,8 +232,55 @@ namespace ChatUp.Controllers
             return PartialView(groupe);
         }
 
+        public ActionResult InviterMembre(int? idGroupe, string idUtilisateur)
+        {
+            if (idGroupe == null)
+                return Redirect("~/Home/Index.cshtml");
+
+            DiscussionViewModel viewModel;
+            GroupeModel groupe = db.ListeGroupes.Find(idGroupe);
+            UtilisateurModel utilisateur;
+
+            if (idUtilisateur == null)
+                utilisateur = db.ListeUtilisateurs.Find(HttpContext.User.Identity.Name);
+            else
+                utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+
+            if (!groupe.MembresGroupe.Contains(utilisateur) && utilisateur.Email != HttpContext.User.Identity.Name)
+            {
+                groupe.MembresGroupe.Add(utilisateur);
+                db.SaveChanges();
+
+                return RedirectToAction("Details", new { id = groupe.IdGroupe });
+            }
+
+            viewModel = new DiscussionViewModel
+            {
+                Groupe = groupe,
+                Utilisateur = utilisateur
+            };
+
+            return PartialView(viewModel);
+        }
+
+        public ActionResult ExclureMembre(int? idGroupe, string idUtilisateur)
+        {
+            if (idGroupe == null)
+                return Redirect("~/Home/Index.cshtml");
+
+            UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+            GroupeModel groupe = db.ListeGroupes.Find(idGroupe);
+
+            groupe.MembresGroupe.Remove(utilisateur);
+            db.SaveChanges();
+
+            if (HttpContext.Request.UrlReferrer.ToString().Contains("Editer"))
+                return RedirectToAction("Editer", new { id = idGroupe });
+            else
+                return RedirectToAction("Details", new { id = idGroupe });
+        }
+
         [HttpPost]
-        [ChildActionOnly]
         [ValidateAntiForgeryToken]
         public ActionResult EnvoyerMessage(DiscussionViewModel discussion)
         {

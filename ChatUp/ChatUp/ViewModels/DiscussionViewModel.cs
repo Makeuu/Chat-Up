@@ -7,5 +7,6 @@ namespace ChatUp.ViewModels
     {
         public GroupeModel Groupe { get; set; }
         public MessageModel Message { get; set; }
+        public UtilisateurModel Utilisateur { get; set; }
     }
 }

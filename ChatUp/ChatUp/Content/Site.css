@@ -95,18 +95,6 @@ a.button-collapse {
     margin-bottom: 10px;
 }
 
-.me {
-    background-color: green;
-    margin-left: 40%;
-    width: 50%;
-    color: white;
-}
-
-.you {
-    margin-right: 40%;
-    width: 50%;
-}
-
 .conversation-start {
     color: gray;
 }
@@ -165,4 +153,45 @@ table {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+.roundedImage{
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:10px;
+    height:10px;
+}
+
+.connected {
+    color: darkgreen;
+}
+
+.disconnected {
+    color: darkred;
+}
+
+#listMembreDiscussion{
+    height: 40%;
+}
+
+blockquote {
+    margin: 5px 0;
+}
+
+.me {
+    background-color: green;
+    margin-left: 40%;
+    width: 50%;
+    color: white;
+}
+
+.you {
+    margin-right: 40%;
+    width: 50%;
+}
+
+#pseudoMembre{
+    width: 5%;
 }

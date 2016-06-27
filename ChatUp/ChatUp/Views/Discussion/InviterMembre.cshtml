@@ -1,0 +1,29 @@
+﻿@model ChatUp.ViewModels.DiscussionViewModel
+
+<ul class="collection">
+
+    @if(Model.Utilisateur.ListeAmis == null || Model.Utilisateur.ListeAmis.Count == 0)
+    {
+        <li class="collection-item avatar">
+            <p>
+                Aucun ami
+            </p>
+        </li>
+    }
+
+    @foreach (var item in Model.Utilisateur.ListeAmis)
+    {
+        if (!Model.Groupe.MembresGroupe.Contains(item) && !Model.Groupe.AdministrateurGroupe.Email.Equals(item.Email))
+        {
+            <li class="collection-item avatar">
+                <a href="@Url.Action("InviterMembre", "Discussion",  new { idGroupe = Model.Groupe.IdGroupe, idUtilisateur = item.Email })">
+                    <img src="" alt="" class="circle" />
+                    <h6 class="title">
+                        @Html.DisplayFor(modelItem => item.Profil.Prenom)
+                        @Html.DisplayFor(modelItem => item.Profil.Nom)
+                    </h6>
+                </a>
+            </li>
+        }
+    }
+</ul>

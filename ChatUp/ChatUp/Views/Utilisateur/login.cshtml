@@ -33,6 +33,7 @@ else
     <p>
         Veuillez vous authentifier :
     </p>
+
     using (Html.BeginForm())
     {
         <div class="container">
@@ -43,19 +44,17 @@ else
                         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-
                     <div class="input-field col s3">
-                        @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "validate"} })
+                        @Html.EditorFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "validate" } })
                         @Html.LabelFor(model => model.MotDePasse, htmlAttributes: new { @class = "control-label col-md-2" })
                         @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-
                 <button class="btn waves-effect waves-light" type="submit" name="action">
                     Se connecter
                     <i class="material-icons right">send</i>
-                </button>   
+                </button>
             </div>
         </div>
     }

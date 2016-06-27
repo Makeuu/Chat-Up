@@ -1,0 +1,22 @@
+﻿1;Salut !
+2;Hello !
+3;Yo
+1;Comment vas-tu ?
+2;Bien & toi ?
+1;Grande forme, merci
+3;Pour mon anniv' qui fait quoi ?
+4;Faut apporter la boisson ? Ou c'est open bar gratuit ?
+1;Attendez moi je bosse assez tard, gardez moi des merguez !
+2;Hey ! C'est toi la merguez t'es un fou toi !
+2;je veux de la pizza moi 
+4;Manger c'est démodé, moi j'fais plus ça... par contre boire c'est autre chose
+3;Loool 
+1;Faut une tenue correcte ?
+3;Tant que t'as un slip c'est good
+1;Parfait !
+2;Bon question importante... qui apporte le jeu de cartes ?
+4;A ton age ? Serieusement !
+1;Sortez les manettes
+3;Nan !
+1;Alleeeeeeeeeeeez
+3;Laissez tomber, vous êtes tous des nazes !
