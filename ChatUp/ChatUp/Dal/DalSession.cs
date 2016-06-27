@@ -14,7 +14,7 @@ namespace ChatUp.Dal
             bdd = new BddContext();
         }
 
-        public SessionModel CreerSession(String email, String motDePasse, UtilisateursModels utilisateur)
+        public SessionModel CreerSession(String email, String motDePasse, UtilisateurModel utilisateur)
         {
             SessionModel session = new SessionModel { Email = email, MotDePasse = motDePasse,
                 Utilisateur = utilisateur };
@@ -26,7 +26,7 @@ namespace ChatUp.Dal
 
         public SessionModel AuthentifierUtilisateur(String email, String motDePasse)
         {
-            UtilisateursModels UtilisateurSession = bdd.ListeUtilisateurs.FirstOrDefault(u => u.Email == email
+            UtilisateurModel UtilisateurSession = bdd.ListeUtilisateurs.FirstOrDefault(u => u.Email == email
             && u.MotDePasse == motDePasse);
 
             return CreerSession(email, motDePasse, UtilisateurSession);

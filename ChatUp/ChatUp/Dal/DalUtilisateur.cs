@@ -19,13 +19,13 @@ namespace ChatUp.Dal
             bool flag = false;
             if (ObtenirUtilisateur(email) == null)
             {
-                bdd.ListeUtilisateurs.Add(new UtilisateursModels { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
+                bdd.ListeUtilisateurs.Add(new UtilisateurModel { Email = email, MotDePasse = motdepasse, DateInscription = DateTime.Now });
                 bdd.SaveChanges();
                 flag = true;
             }
             return flag;
         }
-        public UtilisateursModels ObtenirUtilisateur(string email)
+        public UtilisateurModel ObtenirUtilisateur(string email)
         {
             return bdd.ListeUtilisateurs.FirstOrDefault(u => u.Email == email);
         }
@@ -34,7 +34,7 @@ namespace ChatUp.Dal
             bdd.Dispose();
         }
 
-        public List<UtilisateursModels> ObtientTousLesUtilisateurs()
+        public List<UtilisateurModel> ObtientTousLesUtilisateurs()
         {
             return bdd.ListeUtilisateurs.ToList();
         }

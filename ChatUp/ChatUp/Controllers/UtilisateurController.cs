@@ -21,7 +21,7 @@ namespace ChatUp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Inscrire(UtilisateursModels utilisateur)
+        public ActionResult Inscrire(UtilisateurModel utilisateur)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace ChatUp.Controllers
             DalSession DalS = new DalSession();
             DalUtilisateur DalU = new DalUtilisateur();
 
-            UtilisateursModels utilisateur = DalU.ObtenirUtilisateur(HttpContext.User.Identity.Name);
+            UtilisateurModel utilisateur = DalU.ObtenirUtilisateur(HttpContext.User.Identity.Name);
             SessionModel session = DalS.ObtenirSession(utilisateur.Email);
             if (session != null)
             {
@@ -90,15 +90,15 @@ namespace ChatUp.Controllers
 
         public ActionResult AjouterAmi()
         {
-            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult AjouterAmi(UtilisateursModels viewModel)
+        public ActionResult AjouterAmi(UtilisateurModel viewModel)
         {
-            UtilisateursModels amis = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == viewModel.Email);
-            UtilisateursModels courant = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            UtilisateurModel amis = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == viewModel.Email);
+            UtilisateurModel courant = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
 
             if (amis != null && amis.Email != courant.Email)
             {
@@ -114,19 +114,19 @@ namespace ChatUp.Controllers
 
         public ActionResult AjouterAmisSucces()
         {
-            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
             return View(viewModel);
         }
 
         public ActionResult AjouterAmisEchec()
         {
-            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
             return View(viewModel);
         }
 
         public ActionResult ListeAmis()
         {
-            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
             return PartialView(viewModel);
         }
 

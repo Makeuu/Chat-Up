@@ -11,7 +11,7 @@ namespace ChatUp.Dal
     {
         List<SessionModel> ObtientToutesLesSessions();
         SessionModel AuthentifierUtilisateur(String email, String motDePasse);
-        SessionModel CreerSession(String email, String motDePasse, UtilisateursModels utilisateur);
+        SessionModel CreerSession(String email, String motDePasse, UtilisateurModel utilisateur);
         void SupprimerSession(SessionModel session);
         SessionModel ObtenirSession(String email);
     }

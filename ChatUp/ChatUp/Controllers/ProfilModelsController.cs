@@ -22,7 +22,7 @@ namespace ChatUp.Views.Utilisateur
             if (id == null)
             {
                 string idUtilisateur = HttpContext.User.Identity.Name;
-                UtilisateursModels utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+                UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
 
                 id = utilisateur.Profil.ProfilId;
             }
@@ -41,7 +41,7 @@ namespace ChatUp.Views.Utilisateur
             if (id == null)
             {
                 string idUtilisateur = HttpContext.User.Identity.Name;
-                UtilisateursModels utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+                UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
 
                 id = utilisateur.Profil.ProfilId;
             }

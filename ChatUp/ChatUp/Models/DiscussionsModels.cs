@@ -32,10 +32,10 @@ namespace ChatUp.Models
         public string AdministrateurGroupeId { get; set; }
         
         [Display(Name = "Administrateur du groupe")]
-        public virtual UtilisateursModels AdministrateurGroupe { get; set; }
+        public virtual UtilisateurModel AdministrateurGroupe { get; set; }
         
         [Display(Name = "Membres du groupe")]
-        public virtual List<UtilisateursModels> MembresGroupe { get; set; }
+        public virtual List<UtilisateurModel> MembresGroupe { get; set; }
         
         [Display(Name = "Historique des messages")]
         public virtual List<MessageModel> ListeMessages { get; set; }
@@ -58,7 +58,7 @@ namespace ChatUp.Models
         [ForeignKey("Groupe")]
         public int GroupeId { get; set; }
         
-        public virtual UtilisateursModels AuteurContenu { get; set; }
+        public virtual UtilisateurModel AuteurContenu { get; set; }
         public virtual GroupeModel Groupe { get; set; }
     }
     #endregion
