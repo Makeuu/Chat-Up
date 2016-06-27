@@ -5,13 +5,13 @@ namespace ChatUp.Dal
 {
     public interface IDalGroupe
     {
-        GroupeModel CreerGroupe(string nom, UtilisateurModel admin, List<UtilisateurModel> membres);
-        bool ChangeAdmin(UtilisateurModel admin, int idGroupe);
-        bool AjouterMembre(UtilisateurModel membre, int idGroupe);
-        void AjouterMembres(List<UtilisateurModel> membres, int idGroupee);
-        bool SupprimerMembre(UtilisateurModel membre, int idGroupe);
-        List<UtilisateurModel> VoirMembres(int idGroupe);
-        bool AjouterMessage(UtilisateurModel utilisateur, string message, int idGroupe);
+        GroupeModel CreerGroupe(string nom, UtilisateursModels admin, List<UtilisateursModels> membres);
+        bool ChangeAdmin(UtilisateursModels admin, int idGroupe);
+        bool AjouterMembre(UtilisateursModels membre, int idGroupe);
+        void AjouterMembres(List<UtilisateursModels> membres, int idGroupee);
+        bool SupprimerMembre(UtilisateursModels membre, int idGroupe);
+        List<UtilisateursModels> VoirMembres(int idGroupe);
+        bool AjouterMessage(UtilisateursModels utilisateur, string message, int idGroupe);
         //bool ajouterMessage(UtilisateurModel utilisateur, Image image, int idGroupe);
         //bool ajouterMessage(UtilisateurModel utilisateur, Video video, int idGroupe);
         bool SupprimerMessage(MessageModel message, int idGroupe);

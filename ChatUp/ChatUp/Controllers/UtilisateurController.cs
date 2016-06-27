@@ -1,6 +1,8 @@
 ﻿using ChatUp.Dal;
 using ChatUp.Models;
 using System;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -13,37 +15,14 @@ namespace ChatUp.Controllers
         // GET : Formulaire d'inscription
         public ActionResult Inscrire()
         {
- 
+
             ViewData["Succes"] = true;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Inscrire(UtilisateurModel utilisateur)
+        public ActionResult Inscrire(UtilisateursModels utilisateur)
         {
-            //bool flag = false;
-            ///*On test si le formulaire est bien rempli*/
-            //if (ModelState.IsValid)
-            //{
-            //    DalUtilisateur Dal = new DalUtilisateur();
-            //    flag = Dal.CreerUtilisateur(utilisateur.Email, utilisateur.MotDePasse);
-            //    /*Ajouter une vue d'inscription réussis*/
-            //    /*On test si l'inscription de notre point de vue s'est bien déroulée*/
-            //    if (flag)
-            //    {
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //    /*Sinon on renvoit la page avec un message d'erreur*/
-            //    else
-            //    {
-            //        ViewData["Succes"] = flag;
-            //        return View();
-            //    }
-            //}
-            //// Sinon on renvoit la page
-            //ViewData["Succes"] = flag;
-            //return View();
-
             if (ModelState.IsValid)
             {
                 ProfilModel profil = new ProfilModel
@@ -98,7 +77,7 @@ namespace ChatUp.Controllers
             DalSession DalS = new DalSession();
             DalUtilisateur DalU = new DalUtilisateur();
 
-            UtilisateurModel utilisateur = DalU.ObtenirUtilisateur(HttpContext.User.Identity.Name);
+            UtilisateursModels utilisateur = DalU.ObtenirUtilisateur(HttpContext.User.Identity.Name);
             SessionModel session = DalS.ObtenirSession(utilisateur.Email);
             if (session != null)
             {
@@ -108,5 +87,48 @@ namespace ChatUp.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult AjouterAmi()
+        {
+            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AjouterAmi(UtilisateursModels viewModel)
+        {
+            UtilisateursModels amis = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == viewModel.Email);
+            UtilisateursModels courant = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+
+            if (amis != null && amis.Email != courant.Email)
+            {
+                courant.ListeAmis.Add(amis);
+                db.SaveChanges();
+                return RedirectToAction("AjouterAmisSucces");
+            }
+            else
+            {
+                return RedirectToAction("AjouterAmisEchec");
+            }
+        }
+
+        public ActionResult AjouterAmisSucces()
+        {
+            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            return View(viewModel);
+        }
+
+        public ActionResult AjouterAmisEchec()
+        {
+            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            return View(viewModel);
+        }
+
+        public ActionResult ListeAmis()
+        {
+            UtilisateursModels viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+            return PartialView(viewModel);
+        }
+
     }
 }

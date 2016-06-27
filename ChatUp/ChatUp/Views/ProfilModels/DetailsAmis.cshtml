@@ -1,6 +1,6 @@
 ﻿@model ChatUp.Models.ProfilModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details Amis";
 }
 @section Menu
 {
@@ -42,16 +42,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-action">
-                    @Html.ActionLink("Editer mon profil", "Edit", new { id = Model.ProfilId })
-                </div>
             </div>
-        </div>
-        <div class="s12 m12">
-            <a class="waves-effect waves-light btn" href="@Url.Action("AjouterAmi", "Utilisateur")">Ajouter un(e) ami(e)</a>
-        </div>
-        <div>
-            @Html.Action("ListeAmis", "Utilisateur")
         </div>
     </div>
 </div>

@@ -244,6 +244,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\chatup\chat.js" />
+    <Content Include="Scripts\chatup\modal.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="favicon.ico" />
@@ -299,6 +301,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui.min" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -325,7 +328,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Utilisateur\Login.cshtml" />
     <Content Include="Views\Utilisateur\Inscrire.cshtml" />
-    <Content Include="Views\Utilisateur\Profil.cshtml" />
     <Content Include="Views\Discussion\EnvoyerMessage.cshtml" />
     <Content Include="Views\Discussion\Supprimer.cshtml" />
     <Content Include="Views\Discussion\Lister.cshtml" />
@@ -340,6 +342,11 @@
     <Content Include="Views\Discussion\Creer.cshtml" />
     <Content Include="Views\Discussion\ListerMembres.cshtml" />
     <Content Include="Views\Discussion\Informations.cshtml" />
+    <Content Include="Views\Utilisateur\AjouterAmi.cshtml" />
+    <Content Include="Views\Utilisateur\ListeAmis.cshtml" />
+    <Content Include="Views\Utilisateur\AjouterAmisSucces.cshtml" />
+    <Content Include="Views\Utilisateur\AjouterAmisEchec.cshtml" />
+    <Content Include="Views\ProfilModels\DetailsAmis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

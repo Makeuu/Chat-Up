@@ -38,7 +38,7 @@ namespace ChatUp.Dal
         /// <param name="admin">L'utilisateur administrateur du groupe</param>
         /// <param name="membres">Une liste des membres du groupe</param>
         /// <returns>Retourne le groupe créé</returns>
-        public GroupeModel CreerGroupe(string nom, UtilisateurModel admin, List<UtilisateurModel> membres)
+        public GroupeModel CreerGroupe(string nom, UtilisateursModels admin, List<UtilisateursModels> membres)
         {
             //On crée un groupe avec les paramètres passés
             GroupeModel groupe = new GroupeModel
@@ -96,7 +96,7 @@ namespace ChatUp.Dal
         /// <param name="admin">Le nouvel admin du groupe</param>
         /// <param name="idGroupe">L'id du groupe à modifier</param>
         /// <returns> Renvoi 'true' si le changement a bien été effectué, false sinon. </returns>
-        public bool ChangeAdmin(UtilisateurModel nouvelAdmin, int  idGroupe)
+        public bool ChangeAdmin(UtilisateursModels nouvelAdmin, int  idGroupe)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace ChatUp.Dal
         /// <param name="membre">Le membre à ajouter au groupe</param>
         /// <param name="idGroupe">L'id du groupe auquel on veut ajouter un membre</param>
         /// <returns>Retourne un booléen, 'true' si le membre a bien été ajouté, 'false' sinon </returns>
-        public bool AjouterMembre(UtilisateurModel membre, int idGroupe)
+        public bool AjouterMembre(UtilisateursModels membre, int idGroupe)
         {
             try
             {
@@ -172,7 +172,7 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="membres">La liste des membres à ajouter</param>
         /// <param name="idGroupe">L'id du groupe auquel on ajoute les membres </param>
-        public void AjouterMembres(List<UtilisateurModel> membres, int idGroupe)
+        public void AjouterMembres(List<UtilisateursModels> membres, int idGroupe)
         {
             try
             {
@@ -183,7 +183,7 @@ namespace ChatUp.Dal
                 if(groupe != null && membres != null && membres.Count > 0)
                 {
                     //On vérifie d'abord qu'on ajoute pas des membres déjà existants
-                    foreach(UtilisateurModel u in membres)
+                    foreach(UtilisateursModels u in membres)
                     {
                         if (!groupe.MembresGroupe.Contains(u))
                             groupe.MembresGroupe.Add(u);
@@ -205,7 +205,7 @@ namespace ChatUp.Dal
         /// <param name="membre">Le membre à supprimer</param>
         /// <param name="idGroupe">L'id du groupe duquel on veut retirer l'utilisateur</param>
         /// <returns>Renvoi un booléen, 'true' si l'utilisateur a bien été supprimé, 'false' sinon </returns>
-        public bool SupprimerMembre(UtilisateurModel membre, int idGroupe)
+        public bool SupprimerMembre(UtilisateursModels membre, int idGroupe)
         {
             try
             {
@@ -242,9 +242,9 @@ namespace ChatUp.Dal
         /// </summary>
         /// <param name="idGroupe">L'id du groupe dont on veut récupérer la liste de membres</param>
         /// <returns>Retourne la liste des membres du groupe</returns>
-        public List<UtilisateurModel> VoirMembres(int idGroupe)
+        public List<UtilisateursModels> VoirMembres(int idGroupe)
         {
-            List<UtilisateurModel> liste = new List<UtilisateurModel>();
+            List<UtilisateursModels> liste = new List<UtilisateursModels>();
 
             try
             {
@@ -270,7 +270,7 @@ namespace ChatUp.Dal
         /// <param name="message">Objet message qu'on ajoute au groupe</param>
         /// <param name="idGroupe">Id du groupe auquel on ajoute un message</param>
         /// <returns>Retourne 'true' si le message a bien été ajouté, 'false' sinon. </returns>
-        public bool AjouterMessage(UtilisateurModel utilisateur, string message, int idGroupe)
+        public bool AjouterMessage(UtilisateursModels utilisateur, string message, int idGroupe)
         {
             try
             {

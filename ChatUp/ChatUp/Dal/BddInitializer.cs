@@ -20,9 +20,9 @@ namespace ChatUp.Dal
 
             profil.ProfilId = context.ListeProfils.FirstOrDefault(pr => pr.Nom == profil.Nom && pr.Prenom == profil.Prenom && pr.Anniversaire == profil.Anniversaire).ProfilId;
             
-            UtilisateurModel utilisateur = new UtilisateurModel { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Groupes = new List<GroupeModel>(), Profil = profil };
-            UtilisateurModel utilisateur2 = new UtilisateurModel { Email = "yassine.fernane@gmail.com", DateInscription = DateTime.Now, MotDePasse = "blabla", Groupes = new List<GroupeModel>(), Profil = profil2 };
-            UtilisateurModel utilisateur3 = new UtilisateurModel { Email = "yaya@moi.fr", DateInscription = DateTime.Now, MotDePasse = "yaya", Groupes = new List<GroupeModel>(), Profil = profil };
+            UtilisateursModels utilisateur = new UtilisateursModels { Email = "matthieu.mercier3105@gmail.com", DateInscription = DateTime.Now, MotDePasse = "fdp", Groupes = new List<GroupeModel>(), Profil = profil };
+            UtilisateursModels utilisateur2 = new UtilisateursModels { Email = "yassine.fernane@gmail.com", DateInscription = DateTime.Now, MotDePasse = "blabla", Groupes = new List<GroupeModel>(), Profil = profil2 };
+            UtilisateursModels utilisateur3 = new UtilisateursModels { Email = "yaya@moi.fr", DateInscription = DateTime.Now, MotDePasse = "yaya", Groupes = new List<GroupeModel>(), Profil = profil };
 
             context.ListeUtilisateurs.Add(utilisateur);
             context.ListeUtilisateurs.Add(utilisateur2);
@@ -31,9 +31,9 @@ namespace ChatUp.Dal
 
             //Test YF
             DalGroupe groupe = new DalGroupe(context);
-            GroupeModel gm = groupe.CreerGroupe("Groupe Test", utilisateur2, new List<UtilisateurModel>());
+            GroupeModel gm = groupe.CreerGroupe("Groupe Test", utilisateur2, new List<UtilisateursModels>());
 
-            groupe.AjouterMembres(new List<UtilisateurModel> { utilisateur, utilisateur3 }, gm.IdGroupe);
+            groupe.AjouterMembres(new List<UtilisateursModels> { utilisateur, utilisateur3 }, gm.IdGroupe);
             //utilisateur.Groupes.Add(gm);
             //utilisateur2.Groupes.Add(gm);
 

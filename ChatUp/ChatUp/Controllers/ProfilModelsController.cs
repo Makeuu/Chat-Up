@@ -22,7 +22,26 @@ namespace ChatUp.Views.Utilisateur
             if (id == null)
             {
                 string idUtilisateur = HttpContext.User.Identity.Name;
-                UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+                UtilisateursModels utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+
+                id = utilisateur.Profil.ProfilId;
+            }
+
+            ProfilModel profilModel = await db.ListeProfils.FindAsync(id);
+
+            if (profilModel == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(profilModel);
+        }
+        public async Task<ActionResult> DetailsAmis(int? id)
+        {
+            if (id == null)
+            {
+                string idUtilisateur = HttpContext.User.Identity.Name;
+                UtilisateursModels utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
 
                 id = utilisateur.Profil.ProfilId;
             }
@@ -67,7 +86,7 @@ namespace ChatUp.Views.Utilisateur
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProfilModel profilModel = await db.ListeProfils.FindAsync(id);
+            ProfilModel profilModel = await db.ListeProfils.FindAsync(id);            
             if (profilModel == null)
             {
                 return HttpNotFound();

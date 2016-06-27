@@ -1,0 +1,13 @@
+﻿@model ChatUp.Models.UtilisateursModels
+
+@{
+    ViewBag.Title = "ListeAmis";
+}
+
+<div class="collection">
+    @foreach (var item in Model.ListeAmis)
+    {
+        <a class="collection-item" href="@Url.Action("DetailsAmis", "ProfilModels", new { id = item.Profil.ProfilId })"> @Html.Encode(item.Email)</a>
+    }
+</div>
+

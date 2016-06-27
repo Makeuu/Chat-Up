@@ -26,7 +26,7 @@ namespace ChatUp.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(HttpContext.User.Identity.Name);
+                UtilisateursModels utilisateur = db.ListeUtilisateurs.Find(HttpContext.User.Identity.Name);
 
                 List<GroupeModel> listeGroupes = ListerGroupes(utilisateur);
 
@@ -47,7 +47,7 @@ namespace ChatUp.Controllers
 
             if (id == null)
             {
-                UtilisateurModel utilisateur = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
+                UtilisateursModels utilisateur = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
                 List<GroupeModel> listeGrp = db.ListeGroupes.ToList();
 
                 foreach (GroupeModel gm in listeGrp)
@@ -88,7 +88,7 @@ namespace ChatUp.Controllers
                     groupeModel.DateCreationGroupe = DateTime.Now;
                     groupeModel.InvitationAutorisee = false;
                     groupeModel.ListeMessages = new List<MessageModel>();
-                    groupeModel.MembresGroupe = new List<UtilisateurModel>();
+                    groupeModel.MembresGroupe = new List<UtilisateursModels>();
 
                     db.ListeGroupes.Add(groupeModel);
 
@@ -226,7 +226,7 @@ namespace ChatUp.Controllers
             {
                 string idUtilisateur = HttpContext.User.Identity.Name;
                 int idGroupe = -1;
-                UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
+                UtilisateursModels utilisateur = db.ListeUtilisateurs.Find(idUtilisateur);
 
                 int.TryParse(HttpContext.Request.Url.Segments[HttpContext.Request.Url.Segments.Length - 1].ToString(), out idGroupe);
 
@@ -263,7 +263,7 @@ namespace ChatUp.Controllers
             base.Dispose(disposing);
         }
 
-        private List<GroupeModel> ListerGroupes(UtilisateurModel utilisateur)
+        private List<GroupeModel> ListerGroupes(UtilisateursModels utilisateur)
         {
             List<GroupeModel> listeGroupes = db.ListeGroupes.ToList();
             List<GroupeModel> groupeUtilisateur = new List<GroupeModel>();

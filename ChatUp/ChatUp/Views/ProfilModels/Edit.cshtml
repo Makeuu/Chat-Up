@@ -20,6 +20,8 @@
     }
 }
 
+
+
 <h4>Edition du profil</h4>
 
 
@@ -47,8 +49,7 @@
                 </div>
 
                 <div class="input-field col s12">
-                    @Html.EditorFor(model => model.Anniversaire, new { htmlAttributes = new { @class = "validate" } })
-                    @Html.LabelFor(model => model.Anniversaire, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Anniversaire, new { htmlAttributes = new { @class = "validate datepicker"} })
                     @Html.ValidationMessageFor(model => model.Anniversaire, "", new { @class = "text-danger" })
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" name="action">
@@ -62,4 +63,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-ui")  
 }
