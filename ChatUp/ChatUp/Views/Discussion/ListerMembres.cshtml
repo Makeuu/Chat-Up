@@ -3,7 +3,7 @@
 <ul class="collection">
 
     <li class="collection-item avatar">
-        <a href="@Url.Action("Details", "ProfilModels", new { id = Model.AdministrateurGroupe.Profil.ProfilId })">
+        <a href="@Url.Action("DetailsAmis", "ProfilModels", new { id = Model.AdministrateurGroupe.Profil.ProfilId })">
             <img src="" alt="" class="circle" />
             <h6 class="title blue-text text-darken-2">
                 @Html.DisplayFor(modelItem => Model.AdministrateurGroupe.Profil.Prenom)
@@ -22,7 +22,7 @@
     @foreach (var item in Model.MembresGroupe)
     {
         <li class="collection-item avatar">
-            <a href="@Url.Action("Details", "ProfilModels", new { id = item.Profil.ProfilId })">
+            <a href="@Url.Action("DetailsAmis", "ProfilModels", new { id = item.Profil.ProfilId })">
                 <img src="" alt="" class="circle" />
                 <h6 class="title blue-text text-darken-2">
                     @Html.DisplayFor(modelItem => item.Profil.Prenom)
