@@ -1,0 +1,78 @@
+﻿@model ChatUp.Models.SessionModel
+
+@{
+    ViewBag.Title = "Paramètre";
+}
+
+@section Menu
+{
+    @if (Request.IsAuthenticated)
+    {
+        <li><a href="/"><i class="material-icons">perm_identity</i></a></li>
+        <li><a href="@Url.Action("Details", "ProfilModels")"><i class="material-icons">contacts</i></a></li>
+        <li><a href="@Url.Action("Index","Discussion")"><i class="material-icons">question_answer</i></a></li>
+        <li class="active"><a href="@Url.Action("Index","Parameter")"><i class="material-icons">settings</i></a></li>
+        <li><a href=@Url.Action("Deconnexion","Utilisateur")><i class="material-icons">power_settings_new</i></a></li>
+    }
+    else
+    {
+        <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
+    }
+}
+
+@if (Request.IsAuthenticated)
+{
+    <div class="container">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>Paramètres</h4></li>
+            <li class="collection-item">
+                <div>Notification</div>
+                <div class="switch">
+                    
+                        <label>
+                            Off
+                            <input type="checkbox">
+                            <span class="lever"></span>
+                            On
+                        </label>
+                </div>
+            </li>
+            <li class="collection-item">
+                Aperçu notification
+                <div class="switch">
+                    
+                    <label>
+                        Off
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
+            </li>
+            <li class="collection-item">
+                Son
+                <div class="switch">
+                    
+                    <label>
+                        Off
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        On
+                    </label>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+}
+else
+{
+    <h1 class="header center red-text">Accueil</h1>
+        <div class="center">
+            <h5 class="header col s12 light">Page d'accueil de l'application de messagerie instantannées CHAT - UP</h5>
+        </div>
+        <div class="center">
+            @Html.ActionLink("S'inscrire", "Inscrire", "Utilisateur", new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
+            @Html.ActionLink("Se connecter", "Login", "Utilisateur", new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
+        </div>
+}

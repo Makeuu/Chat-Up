@@ -206,6 +206,7 @@
     <Compile Include="Controllers\DiscussionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParameterController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Dal\BddInitializer.cs" />
     <Compile Include="Dal\DalContenu.cs" />
@@ -342,6 +343,7 @@
     <Content Include="Views\Discussion\Creer.cshtml" />
     <Content Include="Views\Discussion\ListerMembres.cshtml" />
     <Content Include="Views\Discussion\Informations.cshtml" />
+    <Content Include="Views\Parameter\Index.cshtml" />
     <Content Include="Views\Utilisateur\AjouterAmi.cshtml" />
     <Content Include="Views\Utilisateur\ListeAmis.cshtml" />
     <Content Include="Views\Utilisateur\AjouterAmisSucces.cshtml" />
