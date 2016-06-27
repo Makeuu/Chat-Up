@@ -20,9 +20,50 @@
     }
 }
 
-@if (Request.IsAuthenticated)
-{
-    <p> Contenu quand l'utilisateur est connecté</p>
+@if (Request.IsAuthenticated){
+    <div>
+        <div class="container center-align">
+            <div class="card">
+                <div class="card-title">
+                    <h3>Bienvenu(e) sur Chat-Up </h3>
+                    <p>Service de messagerie instantannée</p>
+                </div>
+                <div class="card-content">
+                    <p>Cette application a été réalisée dans le cadre d'un projet d'étude en M1 Miage par Apprentissage</p>
+                    <span>L'objectif de ce projet était de réaliser une application de discussion instantannée de type What's App, 
+                            en passant par nos adresses mails plutôt que par nos numéros de téléphones.</span>
+                    <p>Ci-dessous quelques captures d'écrans des possibilités offertes par l'application</p>
+                </div>
+                <div class="card-content center-align container">
+                    <div class="slider">
+                        <ul class="slides">
+                            <li>
+                                <img src="~/Content/pictures/Discussion.PNG"> 
+                                <div class="caption center-align">
+                                    <h3>Une discussion en cours</h3>
+                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="~/Content/pictures/editergruope.PNG">
+                                <div class="caption left-align">
+                                    <h3>Administrer le groupe</h3>
+                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="~/Content/pictures/inviter.PNG">
+                                <div class="caption right-align">
+                                    <h3>Inviter des amis</h3>
+                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 else
 {
@@ -35,3 +76,5 @@ else
         @Html.ActionLink("Se connecter", "Login", "Utilisateur", new { area = "" }, new { @class = "btn-large waves-effect waves-light red", @id = "download-button" })
     </div>
 }
+
+@Scripts.Render("~/Scripts/chatup/carroussel.js")
