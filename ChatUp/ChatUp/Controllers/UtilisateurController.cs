@@ -91,7 +91,10 @@ namespace ChatUp.Controllers
         public ActionResult AjouterAmi()
         {
             UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
-            return View(viewModel);
+
+            ViewBag.AjoutAmi = "";
+
+            return PartialView(viewModel);
         }
 
         [HttpPost]
@@ -104,24 +107,27 @@ namespace ChatUp.Controllers
             {
                 courant.ListeAmis.Add(amis);
                 db.SaveChanges();
-                return RedirectToAction("AjouterAmisSucces");
+
+                ViewBag.AjoutAmi = "Success";
             }
             else
             {
-                return RedirectToAction("AjouterAmisEchec");
+                ViewBag.AjoutAmi = "Fail";
             }
+
+            return PartialView(viewModel);
         }
 
         public ActionResult AjouterAmisSucces()
         {
             UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
-            return View(viewModel);
+            return PartialView(viewModel);
         }
 
         public ActionResult AjouterAmisEchec()
         {
             UtilisateurModel viewModel = db.ListeUtilisateurs.FirstOrDefault(u => u.Email == HttpContext.User.Identity.Name);
-            return View(viewModel);
+            return PartialView(viewModel);
         }
 
         public ActionResult ListeAmis()
@@ -130,5 +136,19 @@ namespace ChatUp.Controllers
             return PartialView(viewModel);
         }
 
+        public ActionResult SupprimerAmi(int? id)
+        {
+            if (id == null)
+                return View();
+
+            UtilisateurModel utilisateur = db.ListeUtilisateurs.Find(HttpContext.User.Identity.Name);
+            UtilisateurModel ami = db.ListeUtilisateurs.FirstOrDefault(u => u.Profil.ProfilId == id);
+
+            utilisateur.ListeAmis.Remove(ami);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "ProfilModels", new { id = utilisateur.Profil.ProfilId });
+        }
     }
 }

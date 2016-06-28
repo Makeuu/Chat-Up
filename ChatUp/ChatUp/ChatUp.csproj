@@ -205,9 +205,7 @@
     <Compile Include="Controllers\ParameterController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Dal\BddInitializer.cs" />
-    <Compile Include="Dal\DalProfil.cs" />
     <Compile Include="Dal\DalSession.cs" />
-    <Compile Include="Dal\IDalProfil.cs" />
     <Compile Include="Dal\DalUtilisateur.cs" />
     <Compile Include="Dal\IDalSession.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,9 +232,16 @@
     <Content Include="Content\materialize.css" />
     <Content Include="Content\materialize.min.css" />
     <Content Include="Content\font\material-design-icons\Material-Design-Icons.svg" />
+    <Content Include="Content\pictures\accueil.PNG" />
+    <Content Include="Content\pictures\ajouterAmi.PNG" />
+    <Content Include="Content\pictures\connexion.PNG" />
     <Content Include="Content\pictures\Discussion.PNG" />
     <Content Include="Content\pictures\editergruope.PNG" />
+    <Content Include="Content\pictures\editerProfil.PNG" />
+    <Content Include="Content\pictures\inscription.PNG" />
     <Content Include="Content\pictures\inviter.PNG" />
+    <Content Include="Content\pictures\param.PNG" />
+    <Content Include="Content\pictures\profil.PNG" />
     <Content Include="Content\pictures\wallhaven-316401.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

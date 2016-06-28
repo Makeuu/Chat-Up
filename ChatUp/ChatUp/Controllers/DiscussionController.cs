@@ -166,13 +166,58 @@ namespace ChatUp.Controllers
         public ActionResult Supprimer(int? id)
         {
             GroupeModel groupeModel = db.ListeGroupes.Find(id);
-            db.ListeGroupes.Remove(groupeModel);
 
+            groupeModel.MembresGroupe.RemoveRange(0, groupeModel.MembresGroupe.Count);
+            db.SaveChanges();
+
+            db.ListeGroupes.Remove(groupeModel);           
             db.SaveChanges();
 
             return RedirectToAction("Index");
         }
         
+        public ActionResult EnvoyerMessagePrive(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            UtilisateurModel ami = db.ListeUtilisateurs.FirstOrDefault(u => u.Profil.ProfilId == id);
+            UtilisateurModel util = db.ListeUtilisateurs.Find(HttpContext.User.Identity.Name);
+            
+            List<GroupeModel> listeGrp = db.ListeGroupes.Where(g => g.AdministrateurGroupe.Email == util.Email).ToList();
+            GroupeModel grp = null;
+
+            foreach(GroupeModel g in listeGrp)
+            {
+                if(g.MembresGroupe.Contains(ami) && g.MembresGroupe.Count == 1)
+                {
+                    grp = g;
+                    break;
+                }
+            }
+
+            if (grp == null)
+            {
+                grp = new GroupeModel
+                {
+                    AdministrateurGroupe = util,
+                    DateCreationGroupe = DateTime.Now,
+                    ImageGroupe = null,
+                    InvitationAutorisee = true,
+                    ListeMessages = new List<MessageModel>(),
+                    MembresGroupe = new List<UtilisateurModel>(),
+                    NomGroupe = ami.Profil.Prenom + " " + ami.Profil.Nom
+                };
+
+                grp.MembresGroupe.Add(ami);
+                db.ListeGroupes.Add(grp);
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = grp.IdGroupe });
+        }
+
         public ActionResult AfficherMessages(int? id)
         {
             if (HttpContext.User.Identity.IsAuthenticated && id != null)

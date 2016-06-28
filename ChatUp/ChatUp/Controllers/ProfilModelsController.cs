@@ -36,7 +36,8 @@ namespace ChatUp.Views.Utilisateur
 
             return View(profilModel);
         }
-        public async Task<ActionResult> DetailsAmis(int? id)
+
+        public ActionResult DetailsAmis(int? id)
         {
             if (id == null)
             {
@@ -46,14 +47,14 @@ namespace ChatUp.Views.Utilisateur
                 id = utilisateur.Profil.ProfilId;
             }
 
-            ProfilModel profilModel = await db.ListeProfils.FindAsync(id);
+            ProfilModel profilModel = db.ListeProfils.Find(id);
 
             if (profilModel == null)
             {
                 return HttpNotFound();
             }
 
-            return View(profilModel);
+            return PartialView(profilModel);
         }
 
         // GET: ProfilModels/Create

@@ -3,7 +3,7 @@
 <ul class="collection">
 
     <li class="collection-item avatar">
-        <a href="@Url.Action("DetailsAmis", "ProfilModels", new { id = Model.AdministrateurGroupe.Profil.ProfilId })">
+        <a class="modal-trigger" href="#@Model.AdministrateurGroupe.Profil.ProfilId">
             <img src="" alt="" class="circle" />
             <h6 class="title blue-text text-darken-2">
                 @Html.DisplayFor(modelItem => Model.AdministrateurGroupe.Profil.Prenom)
@@ -16,13 +16,27 @@
             </h6>
         </a>
 
+        <div id="@Model.AdministrateurGroupe.Profil.ProfilId" class="modal">
+            <div class="modal-content">
+                <div class="center-align">
+                    <h4><b>@Model.AdministrateurGroupe.Profil.Prenom @Model.AdministrateurGroupe.Profil.Nom</b></h4>
+                </div>
+
+                @Html.Action("DetailsAmis", "ProfilModels", new { id = Model.AdministrateurGroupe.Profil.ProfilId })
+
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+            </div>
+        </div>
+
         <h6><i>Administrateur du groupe</i></h6>
     </li>
 
     @foreach (var item in Model.MembresGroupe)
     {
         <li class="collection-item avatar">
-            <a href="@Url.Action("DetailsAmis", "ProfilModels", new { id = item.Profil.ProfilId })">
+            <a class="modal-trigger" href="#@item.Profil.ProfilId">
                 <img src="" alt="" class="circle" />
                 <h6 class="title blue-text text-darken-2">
                     @Html.DisplayFor(modelItem => item.Profil.Prenom)
@@ -39,8 +53,23 @@
                 }
             </a>
 
+            <div id="@item.Profil.ProfilId" class="modal">
+                <div class="modal-content">
+                    <div class="center-align">
+                        <h4><b>@item.Profil.Prenom @item.Profil.Nom</b></h4>
+                    </div>
+
+                    @Html.Action("DetailsAmis", "ProfilModels", new { id = item.Profil.ProfilId })
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                </div>
+            </div>
+
             <h6>
                 <i>@Html.Display(item.Email)</i>
+
                 @if (Model.AdministrateurGroupe.Email == HttpContext.Current.User.Identity.Name)
                 {
                     <a href="@Url.Action("ExclureMembre", "Discussion", new { idGroupe = Model.IdGroupe, idUtilisateur = item.Email })" class="red-text text-lighten-1">Exclure du groupe</a>

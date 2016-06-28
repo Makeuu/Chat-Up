@@ -1,13 +1,29 @@
 ﻿@model ChatUp.Models.UtilisateurModel
-
 @{
     ViewBag.Title = "ListeAmis";
 }
-
-<div class="collection">
+<ul class="collection scrollable">
     @foreach (var item in Model.ListeAmis)
     {
-        <a class="collection-item" href="@Url.Action("DetailsAmis", "ProfilModels", new { id = item.Profil.ProfilId })"> @Html.Encode(item.Email)</a>
-    }
-</div>
+        <li class="collection-item">
+            <a class="title blue-text text-darken-2 modal-trigger left-align" href="#@item.Profil.ProfilId">@item.Email</a>
+            <a class="secondary-content" href="@Url.Action("SupprimerAmi", "Utilisateur", new { id = item.Profil.ProfilId })"><i class="material-icons">delete</i></a>
+            <a class="secondary-content" href="@Url.Action("EnvoyerMessagePrive", "Discussion", new {id = item.Profil.ProfilId})"><i class="material-icons">mail outline</i></a>
 
+            <div id="@item.Profil.ProfilId" class="modal">
+                <div class="modal-content">
+                    <div class="center-align">
+                        <h4><b>@item.Profil.Prenom @item.Profil.Nom</b></h4>
+                    </div>
+
+                    @Html.Action("DetailsAmis", "ProfilModels", new { id = item.Profil.ProfilId })
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Fermer</a>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+@Scripts.Render("~/Scripts/chatup/modal.js")

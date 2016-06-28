@@ -17,10 +17,10 @@
         <li class="active"><a href="/"><i class="material-icons">perm_identity</i></a></li>
     }
 }
-<h4>Mon profil</h4>
+<h4>Profil</h4>
 <div class="container">
     <div class="row">
-        <div class="s12 m12">
+        <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-image">
                     <img src="">
@@ -46,13 +46,28 @@
                     @Html.ActionLink("Editer mon profil", "Edit", new { id = Model.ProfilId })
                 </div>
             </div>
-        </div>
-        <div class="s12 m12">
-            <a class="waves-effect waves-light btn" href="@Url.Action("AjouterAmi", "Utilisateur")">Ajouter un(e) ami(e)</a>
-        </div>
-        <div>
-            @Html.Action("ListeAmis", "Utilisateur")
+
+            @*<a class="waves-effect waves-light btn" href="@Url.Action("AjouterAmi", "Utilisateur")">Ajouter un(e) ami(e)</a>*@
+
+            <a class="modal-trigger waves-effect waves-light btn" href="#ajouterAmi">Aouter un(e) ami(e)</a>
+            <div>
+                @if (ViewBag.AjoutAmi == "Success")
+                {
+                    <span class="success">@ViewBag.AjoutAmi</span>
+                }
+                else if (ViewBag.AjoutAmi == "Fail")
+                {
+                    <span class="fail">@ViewBag.AjoutAmi</span>
+                }
+            </div>
+            <div id="ajouterAmi" class="modal">
+                <div class="modal-content">
+                    @Html.Action("AjouterAmi", "Utilisateur")
+                </div>
+            </div>
+            <div class="card">
+                @Html.Action("ListeAmis", "Utilisateur")
+            </div>
         </div>
     </div>
 </div>
-

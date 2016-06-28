@@ -11,14 +11,14 @@
 
     var headerInformation = document.querySelector("#headerInformation"),
         bodyInformation = document.querySelector("#bodyInformation");
-
+    
     window.onload = function (e) {
         sendbox.value = "";
         sendbox.focus();
 
         $('.modal-trigger').leanModal({
             dismissible: true, // Modal can be dismissed by clicking outside of the modal
-            opacity: 0, // Opacity of modal background
+            opacity: 0.5, // Opacity of modal background
             in_duration: 300, // Transition in duration
             out_duration: 200, // Transition out duration
             ready: function () {}, // Callback for Modal open

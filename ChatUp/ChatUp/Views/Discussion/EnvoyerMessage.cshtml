@@ -46,7 +46,7 @@
 
             </div>
             <div class="modal-footer">
-                <a href="@Url.Action("Supprimer", "Discussion", new { id = Model.Groupe.IdGroupe })" class="modal-action modal-close waves-effect waves-green btn-flat">Supprimer</a>
+                <a href="@Url.Action("Supprimer", "Discussion", new { id = Model.Groupe.IdGroupe })" id="supprimerGrp" class="modal-action modal-close waves-effect waves-green btn-flat">Supprimer</a>
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Annuler</a>
             </div>
         </div>
@@ -110,7 +110,12 @@
         })
     }
 
-    window.setInterval(ChargerVuePartielle, 1000);
+    var timer = window.setInterval(ChargerVuePartielle, 1000),
+        supprimerGrp = document.querySelector("#supprimerGrp");
+
+    supprimerGrp.addEventListener('click', function () {
+        window.clearInterval(timer);
+    }, false);
 </script>
 
 @Scripts.Render("~/Scripts/chatup/chat.js")
